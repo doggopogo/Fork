@@ -1,0 +1,56 @@
+<resources>
+
+    <string name="app_name">FitnessAndroid</string>
+    <string name="app_name_Android">FitnessAndroid</string>
+    <string name="app_name_Habits">FitnessHabits</string>
+    <string name="home">Accueil</string>
+    <string name="profil">Profil</string>
+    <string name="export">Exporter</string>
+    <string name="target">Cibles</string>
+    <string name="preference">Préférences</string>
+    <string name="language">Langue</string>
+    <string name="logOut">Déconnexion</string>
+
+    <!-- Taille et Style de Texte -->
+
+    <dimen name="Heading1">20sp</dimen>
+    <dimen name="Heading2">15sp</dimen>
+    <dimen name="Heading3">13sp</dimen>
+    <dimen name="Heading4">10sp</dimen>
+
+    <dimen name="TextParagraphe">15sp</dimen>
+    <dimen name="ModuleTitle">25sp</dimen>
+
+    <dimen name="LoginAppTitle">45sp</dimen>
+
+    <style name="Heading1_style" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
+        <item name="android:fontFamily">@font/roboto_bold</item>
+        <item name="android:textSize">@dimen/Heading1</item>
+    </style>
+
+    <style name="Heading2_style" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
+        <item name="android:fontFamily">@font/roboto_bold</item>
+        <item name="android:textSize">@dimen/Heading2</item>
+    </style>
+
+    <style name="Heading3_style" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
+        <item name="android:fontFamily">@font/roboto_bold</item>
+        <item name="android:textSize">@dimen/Heading3</item>
+    </style>
+
+    <style name="Heading4_style" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
+        <item name="android:fontFamily">@font/roboto_bold</item>
+        <item name="android:textSize">@dimen/Heading4</item>
+    </style>
+
+    <style name="ModuleTitle_style" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
+        <item name="android:fontFamily">@font/roboto_bold</item>
+        <item name="android:textSize">@dimen/ModuleTitle</item>
+    </style>
+
+    <style name="LoginAppTitle_style" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
+        <item name="android:fontFamily">@font/roboto_bold</item>
+        <item name="android:textSize">@dimen/LoginAppTitle</item>
+    </style>
+
+</resources>

@@ -1,0 +1,30 @@
+FROM openjdk:11-jdk
+
+ENV ANDROID_HOME="/android-home"
+ENV ANDROID_COMPILE_SDK="33"
+ENV ANDROID_BUILD_TOOLS="33.0.1"
+ENV ANDROID_SDK_TOOLS="6514223"
+ENV GRADLE_VERSION="7.6"
+
+RUN  apt-get --quiet update --yes
+RUN apt-get --quiet install --yes wget tar unzip lib32stdc++6 lib32z1
+RUN mkdir /android-home
+RUN echo $ANDROID_HOME
+RUN wget --output-document=/android-home/cmdline-tools.zip https://dl.google.com/android/repository/commandlinetools-linux-${ANDROID_SDK_TOOLS}_latest.zip && unzip -d $ANDROID_HOME/cmdline-tools /android-home/cmdline-tools.zip
+CMD ls /android-home
+ENV PATH=$PATH:${ANDROID_HOME}/cmdline-tools/tools/bin/
+RUN sdkmanager --version
+RUN yes | sdkmanager --sdk_root=${ANDROID_HOME} --licenses || true
+RUN sdkmanager --sdk_root=${ANDROID_HOME} "platforms;android-${ANDROID_COMPILE_SDK}"
+RUN sdkmanager --sdk_root=${ANDROID_HOME} "platform-tools"
+RUN sdkmanager --sdk_root=${ANDROID_HOME} "build-tools;${ANDROID_BUILD_TOOLS}"
+
+RUN \
+    cd /usr/local && \
+    curl -L https://services.gradle.org/distributions/gradle-${GRADLE_VERSION}-bin.zip -o gradle-${GRADLE_VERSION}-bin.zip && \
+    unzip gradle-${GRADLE_VERSION}-bin.zip && \
+    rm gradle-${GRADLE_VERSION}-bin.zip
+
+# Export some environment variables
+ENV GRADLE_HOME=/usr/local/gradle-${GRADLE_VERSION}
+ENV PATH=$PATH:$GRADLE_HOME/bin
