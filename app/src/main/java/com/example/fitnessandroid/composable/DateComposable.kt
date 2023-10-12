@@ -7,6 +7,7 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.width
 import androidx.compose.material.Button
 import androidx.compose.material.ButtonDefaults
+import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
@@ -34,9 +35,9 @@ fun DateComposable(
         verticalAlignment = Alignment.CenterVertically
     ) {
         Text(
-            text = "$labelName:",
-            fontWeight = FontWeight.Bold,
-            fontSize = 16.sp,
+            text = "$labelName :",
+            fontWeight = FontWeight.Normal,
+            style = MaterialTheme.typography.h1,
             color = Color.White
         )
         Spacer(Modifier.width(16.dp))
@@ -62,7 +63,7 @@ fun DateComposable(
             )
         ) {
             Text(
-                selectedDate.ifEmpty { "Select your $labelName" },
+                selectedDate.ifEmpty { "Selectionnez une date" },
                 color = if (selectedDate.isEmpty()) Color.LightGray else Color.Black
             )
         }
@@ -74,7 +75,7 @@ fun DateComposable(
 private fun DatePreview(){
     PreviewComposable(backgroundColor = Color.Black) {
         val selectedBirthday = remember { mutableStateOf("") }
-        DateComposable(modifier = it, labelName = "Birthday", context = LocalContext.current) { date ->
+        DateComposable(modifier = it, labelName = "Anniversaire", context = LocalContext.current) { date ->
             selectedBirthday.value = date
         }
     }

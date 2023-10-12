@@ -53,4 +53,52 @@
         <item name="android:textSize">@dimen/LoginAppTitle</item>
     </style>
 
+    <!-- Taille et Style de Texte Tablette -->
+
+    <dimen name="TabHeading1">40sp</dimen>
+    <dimen name="TabHeading2">35sp</dimen>
+    <dimen name="TabHeading3">33sp</dimen>
+    <dimen name="TabHeading4">30sp</dimen>
+
+    <dimen name="TabTextParagraphe">35sp</dimen>
+    <dimen name="TabModuleTitle">45sp</dimen>
+
+    <dimen name="TabLoginAppTitle">65sp</dimen>
+
+    <style name="TabHeading1_style" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
+        <item name="android:fontFamily">@font/roboto_bold</item>
+        <item name="android:textSize">@dimen/Heading1</item>
+    </style>
+
+    <style name="TabHeading2_style" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
+        <item name="android:fontFamily">@font/roboto_bold</item>
+        <item name="android:textSize">@dimen/Heading2</item>
+    </style>
+
+    <style name="TabHeading3_style" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
+        <item name="android:fontFamily">@font/roboto_bold</item>
+        <item name="android:textSize">@dimen/Heading3</item>
+    </style>
+
+    <style name="TabHeading4_style" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
+        <item name="android:fontFamily">@font/roboto_bold</item>
+        <item name="android:textSize">@dimen/Heading4</item>
+    </style>
+
+    <style name="TabModuleTitle_style" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
+        <item name="android:fontFamily">@font/roboto_bold</item>
+        <item name="android:textSize">@dimen/ModuleTitle</item>
+    </style>
+
+    <style name="TabLoginAppTitle_style" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
+        <item name="android:fontFamily">@font/roboto_bold</item>
+        <item name="android:textSize">@dimen/LoginAppTitle</item>
+    </style>
+
+    <!-- Tablette bouton -->
+
+    <dimen name="TabButonHeight">75dp</dimen>
+    <dimen name="TabBtnTextSize">25sp</dimen>
+    <dimen name="TabBtnCornerRadius">35dp</dimen>
+
 </resources>

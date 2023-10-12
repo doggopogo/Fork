@@ -7,11 +7,14 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.fitnessandroid.common.PreviewComposable
 import com.example.fitnessandroid.composable.selector.SelectorRadioButton
+import com.example.fitnessandroid.ui.theme.appText
+import com.example.fitnessandroid.ui.theme.white
 
 @Composable
 fun EntryWithSelector(
@@ -24,24 +27,38 @@ fun EntryWithSelector(
     setOptionSelected : (String) -> Unit,
 ) {
     Row(
-        modifier.padding(16.dp),
+        //modifier.padding(16.dp),
         verticalAlignment = Alignment.CenterVertically
     ) {
+
         TextField(
             value = textValue,
             onValueChange = onTextValueChange,
-            label = { Text(textFieldLabel) },
+            singleLine = true,
+            modifier = Modifier
+                .width(110.dp)
+                .height(55.dp),
+            placeholder = {
+                Text(
+                    text = textFieldLabel,
+                    style = MaterialTheme.typography.body1,
+                    fontWeight = FontWeight.Normal,
+                    color = appText
+                )
+            },
             keyboardOptions = KeyboardOptions.Default.copy(
                 keyboardType = KeyboardType.Number
             ),
-            modifier = Modifier.weight(1f),
             colors = TextFieldDefaults.textFieldColors(
                 backgroundColor = Color.White,
                 textColor = Color.Black
             ),
         )
         Spacer(Modifier.width(8.dp))
-        SelectorRadioButton(options = options, optionSelected = optionSelected, setOptionSelected = setOptionSelected)
+        SelectorRadioButton(
+            options = options,
+            optionSelected = optionSelected,
+            setOptionSelected = setOptionSelected)
     }
 }
 

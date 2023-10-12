@@ -14,9 +14,13 @@ import java.util.concurrent.TimeUnit
 //127.0.0.1 serait la machine android, alors que je veux mon ordi
 //pour aller son adresse, faire ipconfig dans un cmd
 //const val BASE_URL = "http://s-fit.info.uqam.ca/api/"
-const val BASE_URL = "http://192.168.4.49:8080/api/"
 //const val BASE_URL = "http://192.168.1.108:8080/api/"
-//const val BASE_URL = "http://10.0.0.84:8080/api/"
+
+// Jason's IP Address
+//const val BASE_URL = "http://192.168.0.65:8080/api/"
+//const val BASE_URL = "http://172.25.192.1:8080/api/"
+const val BASE_URL = "http://192.168.4.49:8080/api/"
+//const val BASE_URL = "http://172.29.96.8:8080/api/"
 var cookieHandler: CookieHandler = CookieManager()
 
 private val client : OkHttpClient

@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.appcompat.widget.Toolbar xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/AppToolBar"
+    android:layout_width="match_parent"
+    android:layout_height="70dp"
+    android:background="@color/appGreen">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:id="@+id/ToolBarAppName"
+            style="@style/ModuleTitle_style"
+            android:layout_width="wrap_content"
+            android:layout_height="33dp"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="36dp"
+            android:layout_marginBottom="21dp"
+            android:layout_toStartOf="@+id/NotificationIcon"
+            android:text="@string/app_name_Habits"
+            android:textColor="@color/white" />
+
+        <ImageView
+            android:id="@+id/imageView2"
+            android:layout_width="47dp"
+            android:layout_height="33dp"
+            android:layout_alignTop="@+id/ToolBarAppName"
+            android:layout_alignBottom="@+id/ToolBarAppName"
+            android:layout_marginTop="1dp"
+            android:layout_marginEnd="3dp"
+            android:layout_marginBottom="0dp"
+            android:layout_toStartOf="@+id/ToolBarAppName"
+            app:srcCompat="@drawable/icon_logo" />
+
+        <com.google.android.material.circularreveal.cardview.CircularRevealCardView
+            android:id="@+id/ProfilCircleCardView"
+            android:layout_width="42dp"
+            android:layout_height="41dp"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginTop="13dp"
+            android:layout_marginEnd="32dp"
+            android:layout_marginBottom="16dp"
+            android:layout_toStartOf="@+id/imageView2"
+            app:cardBackgroundColor="@color/backgroundgray"
+            app:cardCornerRadius="45dp"
+            app:strokeColor="@color/white"
+            app:strokeWidth="4px">
+
+            <ImageView
+                android:id="@+id/imageView14"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:srcCompat="@drawable/icon_picture" />
+        </com.google.android.material.circularreveal.cardview.CircularRevealCardView>
+
+        <com.google.android.material.circularreveal.cardview.CircularRevealCardView
+            android:id="@+id/MenuCircleCardView"
+            android:layout_width="17dp"
+            android:layout_height="18dp"
+            android:layout_alignParentBottom="true"
+            android:layout_marginTop="5dp"
+            android:layout_marginEnd="29dp"
+            android:layout_marginBottom="13dp"
+            android:layout_toStartOf="@+id/imageView2"
+            app:cardBackgroundColor="@color/backgroundgray"
+            app:cardCornerRadius="45dp"
+            app:strokeColor="@color/white"
+            app:strokeWidth="3px">
+
+            <ImageView
+                android:id="@+id/imageView13"
+                android:layout_width="11dp"
+                android:layout_height="10dp"
+                android:layout_gravity="center_horizontal|center_vertical"
+                app:srcCompat="@drawable/baseline_menu_24_app_green" />
+        </com.google.android.material.circularreveal.cardview.CircularRevealCardView>
+
+        <ImageView
+            android:id="@+id/NotificationIcon"
+            android:layout_width="36dp"
+            android:layout_height="35dp"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="26dp"
+            android:layout_marginBottom="11dp"
+            app:srcCompat="@drawable/baseline_notifications_24_white" />
+
+        <com.google.android.material.circularreveal.cardview.CircularRevealCardView
+            android:id="@+id/NotificatioiniCircleCardView"
+            android:layout_width="17dp"
+            android:layout_height="18dp"
+            android:layout_alignStart="@+id/NotificationIcon"
+            android:layout_alignEnd="@+id/NotificationIcon"
+            android:layout_alignBottom="@+id/NotificationIcon"
+            android:layout_marginStart="19dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginEnd="0dp"
+            android:layout_marginBottom="17dp"
+            app:cardBackgroundColor="@color/appGreen"
+            app:cardCornerRadius="45dp"
+            app:strokeColor="@color/white"
+            app:strokeWidth="3px">
+
+            <TextView
+                android:id="@+id/NotificationNumbre"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal|center_vertical"
+                android:fontFamily="@font/roboto_bold"
+                android:text="00"
+                android:textColor="@color/white"
+                android:textSize="8sp" />
+        </com.google.android.material.circularreveal.cardview.CircularRevealCardView>
+
+        <!-- <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/profile_image"
+            android:layout_width="58dp"
+            android:layout_height="38dp"
+            android:layout_alignParentBottom="true"
+            android:layout_marginEnd="50dp"
+            android:layout_marginBottom="11dp"
+            android:layout_toStartOf="@+id/imageView2"
+            android:src="@drawable/flag_france"
+            app:civ_border_color="#FF000000"
+            app:civ_border_width="2px" /> -->
+
+    </RelativeLayout>
+
+</androidx.appcompat.widget.Toolbar>

@@ -12,6 +12,7 @@ import androidx.compose.ui.modifier.modifierLocalConsumer
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.fitnessandroid.common.PreviewComposable
+import com.example.fitnessandroid.ui.theme.white
 
 @Composable
 fun SelectorRadioButton(
@@ -42,8 +43,8 @@ fun SelectorRadioButton(
                     selected = optionSelected == it,
                     onClick = { setOptionSelected(it) },
                     colors = RadioButtonDefaults.colors(
-                        selectedColor = Color(0xFF51A489),
-                        unselectedColor = Color.White
+                        selectedColor = white,
+                        unselectedColor = white
                     )
                 )
                 Text(text = it, color = Color.White)

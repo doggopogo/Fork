@@ -1,8 +1,13 @@
 package com.example.fitnessandroid.api.restrequest.user
 
+import android.app.Application
 import android.content.Context
 import android.content.Intent
 import android.util.Log
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.core.content.ContextCompat.startActivity
 import com.example.fitnessandroid.MainActivity
 import com.example.fitnessandroid.Utilities.getHashMapMultiplesValues
@@ -11,6 +16,8 @@ import com.example.fitnessandroid.api.model.OperationResult
 import com.example.fitnessandroid.api.restrequest.APIWrapper
 import com.example.fitnessandroid.api.restrequest.HTTPMETHOD
 import com.example.fitnessandroid.fithabdata.FitHabConst
+import com.example.fitnessandroid.homescreen.CustomAlert
+import com.example.fitnessandroid.homescreen.ShowCustomAlert
 import com.example.fitnessandroid.homescreen.user.User
 import com.example.fitnessandroid.settingsdrawer.drawer.DrawerActivity
 import com.google.gson.GsonBuilder
@@ -39,9 +46,10 @@ object APIUser {
                     startActivity(context, intent,null)
                 }
             } else {
-                MainActivity.showErrorMessage(res.message)
+                //MainActivity.showErrorMessage(res.message)
             }
         }
+        println("test-json=$json")
     }
 
     fun logout(context: Context?){

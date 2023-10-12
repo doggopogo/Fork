@@ -1,5 +1,7 @@
 package com.example.fitnessandroid.homescreen
 
+import android.app.DatePickerDialog
+import android.content.Context
 import androidx.compose.foundation.*
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
@@ -7,15 +9,24 @@ import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.foundation.lazy.grid.items
 import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Card
 import androidx.compose.material.Icon
+import androidx.compose.material.IconButton
+import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
+import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
@@ -35,6 +46,26 @@ import com.example.fitnessandroid.homescreen.bloodSugar.user.UserBloodSugarModal
 import com.example.fitnessandroid.homescreen.sleep.user.UserSleepModal
 import com.example.fitnessandroid.homescreen.toilet.user.UserToiletModal
 import com.example.fitnessandroid.homescreen.weight.user.UserWeightModal
+import com.example.fitnessandroid.ui.theme.appGreen
+import com.example.fitnessandroid.ui.theme.appText
+import com.example.fitnessandroid.ui.theme.backgroundgray
+import java.text.SimpleDateFormat
+import java.util.Calendar
+import java.util.Locale
+import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
+import androidx.compose.foundation.layout.*
+import androidx.compose.material.*
+import androidx.compose.runtime.*
+import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
+import com.example.fitnessandroid.ui.theme.FitnessAndroidTheme
+import com.example.fitnessandroid.ui.theme.appDefaultGray
+import java.util.*
+
 
 @Composable
 fun ModuleList(
@@ -42,15 +73,30 @@ fun ModuleList(
     fitHabUiState: FitHabUiState,
     navController: NavHostController
 ) {
+
     val openDialog = remember { mutableStateOf(false)  }
     val currentModuleUiState = remember { mutableStateOf(fitHabUiState.moduleUiStates.first())  }
+
     Column(
         modifier = Modifier
             .fillMaxSize()
-            .padding(16.dp)
+            .padding(20.dp)
     ) {
+
+        Row(
+            modifier = Modifier
+                //.fillMaxSize()
+                .height(40.dp)
+                .background(backgroundgray)
+        ) {
+            val currentDate = Calendar.getInstance()
+            DateBand()
+        }
+
         LazyColumn(
-            modifier = modifier.fillMaxSize()
+            modifier = modifier
+                .fillMaxSize()
+                .padding(top = 20.dp)
         ) {
             items(fitHabUiState.moduleUiStates) { moduleUiState ->
                 ModuleRow(moduleUiState, navController) {
@@ -72,6 +118,7 @@ fun ModuleList(
                 }
             }
         }
+
     }
 }
 
@@ -85,7 +132,11 @@ private fun ModuleRow(
         modifier = Modifier
             .fillMaxWidth()
             .height(120.dp)
-            .border(BorderStroke(1.dp, Color.LightGray), RoundedCornerShape(10.dp))
+            .background(Color.White)
+            .shadow(
+                elevation = 3.dp,
+                shape = RoundedCornerShape(15.dp)
+            )
     ) {
         ModuleItemIcon(moduleUiState = moduleUiState, setShowModal = setShowModal)
         ModuleItemContent(moduleUiState = moduleUiState, navController = navController)
@@ -99,15 +150,28 @@ private fun ModuleItemIcon(
 ){
     Card(
         modifier = Modifier
-            .width(100.dp)
+            .width(125.dp)
             .height(120.dp)
             .clickable {
                 setShowModal()
             },
         backgroundColor = colorResource(moduleUiState.backgroundColorIcon),
-        border = BorderStroke(1.dp, Color.Black),
-        shape = RoundedCornerShape(topStart = 10.dp, bottomStart = 10.dp)
+        shape = RoundedCornerShape(topStart = 15.dp, bottomStart = 15.dp, topEnd = 10.dp)
     ) {
+
+        Row(
+            modifier = Modifier.padding(start = 10.dp, top = 10.dp)
+        ) {
+            Box(
+                modifier = Modifier
+                    .size(15.dp)
+                    .clip(CircleShape)
+                    .background(Color.White),
+            ){
+
+            }
+        }
+
         moduleUiState.icon?.let {
             Icon(
                 painter = painterResource(it),
@@ -128,10 +192,11 @@ private fun ModuleItemContent(
     Row(
         modifier = Modifier
             .fillMaxHeight()
+            .background(Color.White)
             .clickable {
                 moduleUiState.clickOnContent(navController)
             }
-            .padding(8.dp)
+            .padding(vertical = 10.dp, horizontal = 10.dp)
     ) {
         val percent = if (moduleUiState.stats.isEmpty()) 1f else 0.7f
         Column(
@@ -143,7 +208,7 @@ private fun ModuleItemContent(
                 text = moduleUiState.title,
                 maxLines = 2,
                 fontSize = 24.sp,
-                color = Color.Black,
+                color = appText,
                 fontWeight = FontWeight.Bold
             )
             Spacer(modifier = Modifier.padding(vertical = 8.dp))
@@ -281,3 +346,132 @@ private fun ModuleListPreview() {
         }
     }
 }
+
+@Composable
+fun DateBand() {
+
+    val context = LocalContext.current // Get the current context
+
+    var selectedDate by remember { mutableStateOf(Calendar.getInstance()) }
+
+    // Initialize selectedDate with the current date if it's not already set
+    if (selectedDate.timeInMillis == Calendar.getInstance().timeInMillis) {
+        selectedDate = Calendar.getInstance()
+    }
+
+    Column(
+        modifier = Modifier.fillMaxSize(),
+        horizontalAlignment = Alignment.CenterHorizontally,
+        verticalArrangement = Arrangement.Center
+    ) {
+        Row(
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(top = 3.dp),
+            horizontalArrangement = Arrangement.Center,
+            verticalAlignment = Alignment.CenterVertically
+        ) {
+
+            IconButton(
+                onClick = {
+                    previousDate(selectedDate)
+                    val dateFormat = SimpleDateFormat("dd MMM yyyy", Locale.getDefault())
+                    println("La nouvelle date est : " + dateFormat.format(selectedDate.time))
+                }
+            ) {
+                Icon(
+                    painter = painterResource(id = R.drawable.left_previous_vert_2x),
+                    contentDescription = "Previous",
+                    tint = appGreen,
+                    modifier = Modifier
+                        .size(50.dp)
+                )
+            }
+
+            Box(
+                modifier = Modifier
+                    .padding(horizontal = 50.dp)
+                    .clickable {
+
+                        openDatePickerDialog(context, selectedDate) { newDate ->
+                            selectedDate = newDate
+                        }
+
+                    }
+            ) {
+
+                Text(
+                    text = formatDate(selectedDate),
+                    style = MaterialTheme.typography.h1
+                )
+
+            }
+
+            IconButton(onClick = {
+                nextDate(selectedDate)
+                val dateFormat = SimpleDateFormat("dd MMM yyyy", Locale.getDefault())
+                println("La nouvelle date est : " + dateFormat.format(selectedDate.time))
+            }) {
+                Icon(
+                    painter = painterResource(id = R.drawable.right_next_vert_2x),
+                    contentDescription = "Next",
+                    tint = appGreen,
+                    modifier = Modifier
+                        .size(50.dp)
+                )
+            }
+        }
+    }
+}
+
+@Composable
+fun formatDate(calendar: Calendar): String {
+    val dateFormat = SimpleDateFormat("dd MMM yyyy", Locale.getDefault())
+    return dateFormat.format(calendar.time)
+}
+
+fun nextDate(calendar: Calendar) {
+    calendar.add(Calendar.DAY_OF_YEAR, 1)
+}
+
+fun previousDate(calendar: Calendar) {
+    calendar.add(Calendar.DAY_OF_YEAR, -1)
+}
+
+private fun openDatePickerDialog(context: Context, selectedDate: Calendar, onDateSelected: (Calendar) -> Unit) {
+
+    val listener = DatePickerDialog.OnDateSetListener { _, year, monthOfYear, dayOfMonth ->
+        selectedDate.set(Calendar.YEAR, year)
+        selectedDate.set(Calendar.MONTH, monthOfYear)
+        selectedDate.set(Calendar.DAY_OF_MONTH, dayOfMonth)
+        onDateSelected(selectedDate)
+    }
+
+    val initialYear = selectedDate.get(Calendar.YEAR)
+    val initialMonth = selectedDate.get(Calendar.MONTH)
+    val initialDay = selectedDate.get(Calendar.DAY_OF_MONTH)
+
+    val datePickerDialog = DatePickerDialog(
+        context,
+        listener,
+        initialYear,
+        initialMonth,
+        initialDay
+    )
+
+    val dateFormat = SimpleDateFormat("dd MMM yyyy", Locale.getDefault())
+    println("La nouvelle date est : " + dateFormat.format(selectedDate.time))
+
+    datePickerDialog.show()
+}
+
+@Preview(showBackground = true)
+@Composable
+fun DateBandPreview() {
+    FitnessAndroidTheme() {
+        DateBand()
+    }
+}
+
+
+

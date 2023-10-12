@@ -4,10 +4,12 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.foundation.lazy.grid.items
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Button
 import androidx.compose.material.ButtonDefaults
 import androidx.compose.material.Text
 import androidx.compose.runtime.*
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
@@ -20,16 +22,20 @@ fun SelectorButton(
     modifier: Modifier = Modifier,
     options: List<String>,
     color : Color = Color(0xFF51A489),
+    cells: Int,
     onOptionSelected: (String) -> Unit
 ) {
     var selectedValue by remember { mutableStateOf(options.first()) }
+    val cell = if(cells > 3) 3 else ( cells )
+
     LazyVerticalGrid(
-        modifier = modifier.fillMaxWidth().padding(horizontal = 16.dp),
-        columns = GridCells.Fixed(3)
+        //modifier = modifier.padding(horizontal = 16.dp),
+        columns = GridCells.Fixed(cell),
     ) {
         items(options) { option ->
             Button(
-                modifier = Modifier.padding(2.dp),
+                modifier = Modifier.padding(3.dp),
+                shape = RoundedCornerShape(50.dp),
                 onClick = {
                     onOptionSelected(option)
                     selectedValue = option
@@ -52,7 +58,7 @@ fun SelectorPeriodOfTime(
     onOptionSelected: (Int) -> Unit
 ) {
     val periodOfTime = listOf("Semaine", "Mois", "Trimestre", "Semestre", "Année")
-    SelectorButton(modifier = modifier, options = periodOfTime, color = color) { option ->
+    SelectorButton(modifier = modifier, options = periodOfTime, color = color, cells = 4) { option ->
         onOptionSelected(
             when (option) {
                 "Semaine" -> PERIOD_OF_TIME.WEEK
@@ -66,12 +72,12 @@ fun SelectorPeriodOfTime(
     }
 }
 
-@Preview(showSystemUi = true)
+@Preview(showBackground = true)
 @Composable
 private fun SelectorButtonPreview() {
     PreviewComposable(backgroundColor = Color.White) {
         var gender by remember { mutableStateOf("") }
-        SelectorButton(options = listOf("Male", "Female", "Non-binary")) { selectedGender ->
+        SelectorButton(options = listOf("Male", "Female", "Non-binary"), cells = 3) { selectedGender ->
             gender = selectedGender
         }
     }

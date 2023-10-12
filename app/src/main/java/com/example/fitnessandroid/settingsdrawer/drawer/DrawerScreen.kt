@@ -41,6 +41,10 @@ import com.example.fitnessandroid.settingsdrawer.language.LanguageScreen
 import com.example.fitnessandroid.settingsdrawer.preference.PreferenceScreen
 import com.example.fitnessandroid.settingsdrawer.profile.ProfileScreen
 import com.example.fitnessandroid.settingsdrawer.target.TargetScreen
+import com.example.fitnessandroid.ui.theme.FitnessAndroidTheme
+import com.example.fitnessandroid.ui.theme.appDefaultGray
+import com.example.fitnessandroid.ui.theme.appGreen
+import com.example.fitnessandroid.ui.theme.appText
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
 
@@ -143,7 +147,7 @@ fun DrawerItem(item: NavDrawerItem, selected: Boolean, onItemClick: (NavDrawerIt
         Image(
             painter = painterResource(id = item.icon),
             contentDescription = item.title,
-            colorFilter = ColorFilter.tint(Color.Black),
+            colorFilter = ColorFilter.tint(appDefaultGray),
             contentScale = ContentScale.Fit,
             modifier = Modifier
                 .height(35.dp)
@@ -154,8 +158,9 @@ fun DrawerItem(item: NavDrawerItem, selected: Boolean, onItemClick: (NavDrawerIt
         Text(modifier = Modifier
             .padding(horizontal = 20.dp),
             text = item.title,
-            fontSize = 18.sp,
-            color = Color.Black
+            style = MaterialTheme.typography.h1,
+            fontWeight = FontWeight.Normal,
+            color = appText
         )
     }
 }
@@ -192,22 +197,38 @@ private fun DrawerNavigation(context : Context?, navController: NavHostControlle
 @Composable
 fun TopBar(scope: CoroutineScope, scaffoldState: ScaffoldState) {
     TopAppBar(
+
         title = {
-            Image(modifier = Modifier
-                .padding(horizontal = 20.dp)
-                .size(30.dp),
-                painter = painterResource(id = R.drawable.icon_logo),
-                contentDescription = null)
-            Text(
+
+            Row(
+                horizontalArrangement = Arrangement.Center,
+                verticalAlignment = Alignment.CenterVertically,
+                modifier = Modifier.padding(end = 70.dp)
+            ) {
+                Image(modifier = Modifier
+                    .padding(horizontal = 20.dp)
+                    .size(30.dp),
+                    painter = painterResource(id = R.drawable.icon_logo),
+                    contentDescription = null)
+                Text(
+                    modifier = Modifier
+                        .padding(vertical = 10.dp),
+                    text = stringResource(id = R.string.app_name))
+            }
+
+            IconButton(
+                onClick = { },
                 modifier = Modifier
-                    .padding(vertical = 10.dp),
-                text = stringResource(id = R.string.app_name))
-            Image(modifier = Modifier
-                .padding(horizontal = 50.dp)
-                .size(55.dp),
-                painter = painterResource(id = R.drawable.icon_notification),
-                contentDescription = null)
+                    .size(20.dp)
+            ) {
+                Icon(
+                    painter = painterResource(id = R.drawable.icon_notification_blanc_2x),
+                    contentDescription = "notification",
+                )
+            }
+
         },
+
         navigationIcon = {
             IconButton(onClick = {
                 scope.launch {
@@ -217,7 +238,8 @@ fun TopBar(scope: CoroutineScope, scaffoldState: ScaffoldState) {
                 Icon(Icons.Filled.Menu, "")
             }
         },
-        backgroundColor = Color(0xFF24a788),
+
+        backgroundColor = appGreen,
         contentColor = Color.White
     )
 }
@@ -231,10 +253,14 @@ private fun DrawerHeaderPreview() {
 @Preview(showBackground = true)
 @Composable
 private fun DrawerPreview() {
-    val scope = rememberCoroutineScope()
-    val scaffoldState = rememberScaffoldState(rememberDrawerState(DrawerValue.Closed))
-    val navController = rememberNavController()
-    Drawer(scope = scope, scaffoldState = scaffoldState, navController = navController)
+
+    FitnessAndroidTheme() {
+        val scope = rememberCoroutineScope()
+        val scaffoldState = rememberScaffoldState(rememberDrawerState(DrawerValue.Closed))
+        val navController = rememberNavController()
+        Drawer(scope = scope, scaffoldState = scaffoldState, navController = navController)
+    }
+
 }
 
 @Preview(showSystemUi = true)
