@@ -4,11 +4,11 @@ plugins {
 }
 
 android {
-    namespace 'com.example.fitnessandroid'
+    namespace 'ca.etsmtl.log.fitnesshabits'
     compileSdk 33
 
     defaultConfig {
-        applicationId "com.example.fitnessandroid"
+        applicationId "ca.etsmtl.log.fitnesshabits"
         minSdk 24
         targetSdk 33
         versionCode 1

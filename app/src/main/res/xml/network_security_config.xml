@@ -1,7 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <network-security-config>
     <domain-config cleartextTrafficPermitted="true">
-        <domain includeSubdomains="true">192.168.4.49</domain>
+
+        <!-- <domain includeSubdomains="true">172.29.96.8</domain> -->
+        <!--<domain includeSubdomains="true">172.25.192.1</domain>-->
+        <domain includeSubdomains="true">192.168.0.21</domain>
+        <!-- <domain includeSubdomains="true">192.168.0.65</domain> -->
+        <!-- <domain includeSubdomains="true">192.168.1.108</domain> -->
+
         <domain includeSubdomains="true">s-fit.info.uqam.ca</domain>
         <domain includeSubdomains="true">10.0.0.84</domain>
     </domain-config>
