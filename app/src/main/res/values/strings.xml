@@ -1,7 +1,7 @@
 <resources>
 
-    <string name="app_name">FitnessAndroid</string>
-    <string name="app_name_Android">FitnessAndroid</string>
+    <string name="app_name">FitnessHabits</string>
+    <string name="app_name_Android">FitnessHabits</string>
     <string name="app_name_Habits">FitnessHabits</string>
     <string name="home">Accueil</string>
     <string name="profil">Profil</string>

@@ -218,8 +218,6 @@ obj/
 .idea/gradle.xml
 .idea/jarRepositories.xml
 .idea/navEditor.xml
-app/src/main/java/com/example/fitnessandroid/api/restrequest/APIWrapper.kt
-app/src/main/res/xml/network_security_config.xml
 
 # Legacy Eclipse project files
 .cproject
