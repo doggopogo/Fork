@@ -1,6 +1,6 @@
-package ca.etsmtl.log.fitnesshabits.ui.screens
+package ca.etsmtl.log.fitnesshabits.ui.screens.modules
 
-import ca.etsmtl.log.fitnesshabits.ui.components.ModuleHeader
+import ca.etsmtl.log.fitnesshabits.ui.components.Header
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
@@ -13,9 +13,9 @@ import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 
 @Composable
-fun AlcoholDrugModule(navController: NavController) {
+fun BioBreak(navController: NavController) {
     Column {
-        ModuleHeader(title = "Alcohol & Drugs", navigateBack = { navController.navigateUp() })
+        Header(title = "Bio Break", navigateBack = { navController.navigateUp() })
         // Rest of your screen content
     }
     Box(
@@ -23,7 +23,7 @@ fun AlcoholDrugModule(navController: NavController) {
         contentAlignment = Alignment.Center
     ) {
         Text(
-            text = "Alcohol drug",
+            text = "Bio break",
             fontSize = 24.sp,
             fontWeight = FontWeight.Bold
         )

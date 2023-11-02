@@ -1,61 +1,68 @@
 package ca.etsmtl.log.fitnesshabits.ui.components
 
-import androidx.compose.foundation.background
 import androidx.compose.foundation.Image
-import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.width
+import androidx.compose.material.*
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.KeyboardArrowLeft
+import androidx.compose.material.icons.filled.Menu
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
-import androidx.compose.material.Text
-import androidx.compose.material.IconButton
-import androidx.compose.material.DrawerState
-import androidx.compose.runtime.rememberCoroutineScope
+import androidx.compose.ui.unit.sp
 import ca.etsmtl.log.fitnesshabits.R
 import ca.etsmtl.log.fitnesshabits.ui.theme.appGreen
 import ca.etsmtl.log.fitnesshabits.ui.theme.white
-import kotlinx.coroutines.launch
 
 @Composable
-fun DashboardHeader(drawerState: DrawerState) {
-    val scope = rememberCoroutineScope()
+fun DashboardHeader(
+    onNavigationIconClick: () -> Unit
+) {
     Row(
         modifier = Modifier
             .fillMaxWidth()
-            .background(color = appGreen),
+            .background(color = appGreen)
+            .height(76.dp)
+            .padding(horizontal = 8.dp, vertical = 12.dp),
         horizontalArrangement = Arrangement.SpaceBetween,
         verticalAlignment = Alignment.CenterVertically
     ) {
-        // Hamburger menu
-        IconButton(onClick = {
-            scope.launch {
-                drawerState.open()
-            }
-        }) {
-            Image(
-                painter = painterResource(id = R.drawable.icon_picture),
-                contentDescription = "Menu"
+        IconButton(onClick = onNavigationIconClick) {
+            Icon(
+                imageVector = Icons.Default.Menu,
+                modifier = Modifier.size(32.dp),
+                contentDescription = "Toggle drawer",
+                tint = white
             )
         }
-
-        // App's Logo
+        Spacer(modifier = Modifier.width(32.dp))
         Image(
-            painter = painterResource(id = R.drawable.icon_logo),
-            contentDescription = "App Logo",
-            modifier = Modifier.size(40.dp)
+            painter = painterResource(id = R.drawable.logo_legion_keh_2x),
+            contentDescription = "Logo",
+            modifier = Modifier
+                .size(64.dp)
+                .padding(horizontal = 12.dp)
         )
-
-        // App's Name
-        Text(text = "FitnessHabits", fontWeight = FontWeight.Bold, color = white)
-
-        // Notification button
-        IconButton(onClick = {}) {
-            Image(
-                painter = painterResource(id = R.drawable.baseline_notifications_24_white),
-                contentDescription = "Notifications"
-            )
-        }
+        Text(
+            text = stringResource(id = R.string.app_name),
+            fontWeight = FontWeight.Bold,
+            fontSize = 24.sp,
+            textAlign = TextAlign.Left,
+            modifier = Modifier.fillMaxWidth(),
+            color = white
+        )
     }
 }
