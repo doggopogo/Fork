@@ -12,7 +12,6 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.KeyboardArrowLeft
 import androidx.compose.material.icons.filled.Menu
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -35,8 +34,9 @@ fun DashboardHeader(
         modifier = Modifier
             .fillMaxWidth()
             .background(color = appGreen)
-            .height(76.dp)
-            .padding(horizontal = 8.dp, vertical = 12.dp),
+            .height(92.dp)
+            .padding(horizontal = 8.dp, vertical = 12.dp)
+            .padding(top = 24.dp),
         horizontalArrangement = Arrangement.SpaceBetween,
         verticalAlignment = Alignment.CenterVertically
     ) {

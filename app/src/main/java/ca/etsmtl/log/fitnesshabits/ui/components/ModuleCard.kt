@@ -54,7 +54,7 @@ fun ModuleCard(
                 )
                 .clip(RoundedCornerShape(18.dp))
                 .background(Color.White)
-
+                .clickable(onClick = onInfoClick)
         ) {
             Card( //Icon du module
                 modifier = Modifier
@@ -86,7 +86,6 @@ fun ModuleCard(
             Row( //section d'information du module
                 modifier = Modifier
                     .fillMaxHeight()
-                    .clickable(onClick = onInfoClick)
                     .padding(horizontal = 20.dp, vertical = 12.dp)
             ) {
                 val percent = 0.7f

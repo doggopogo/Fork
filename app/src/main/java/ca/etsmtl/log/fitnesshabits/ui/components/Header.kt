@@ -17,21 +17,24 @@ import androidx.compose.material.icons.filled.KeyboardArrowLeft
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import ca.etsmtl.log.fitnesshabits.ui.theme.appGreen
+import ca.etsmtl.log.fitnesshabits.R
 import ca.etsmtl.log.fitnesshabits.ui.theme.white
 
+
 @Composable
-fun Header(title: String, navigateBack: () -> Unit) {
+fun Header(title: String, color: Int = R.color.appGreen, navigateBack: () -> Unit) {
     Row(
         modifier = Modifier
             .fillMaxWidth()
-            .background(color = appGreen)
-            .height(76.dp)
-            .padding(horizontal = 8.dp, vertical = 12.dp),
+            .background(colorResource(color))
+            .height(92.dp)
+            .padding(horizontal = 8.dp, vertical = 12.dp)
+            .padding(top = 24.dp),
         horizontalArrangement = Arrangement.SpaceBetween,
         verticalAlignment = Alignment.CenterVertically
     ) {
@@ -41,7 +44,7 @@ fun Header(title: String, navigateBack: () -> Unit) {
                 modifier = Modifier.size(32.dp),
                 contentDescription = "Back",
                 tint = white
-                )
+            )
         }
         Spacer(modifier = Modifier.width(32.dp))
         Text(

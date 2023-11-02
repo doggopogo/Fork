@@ -98,9 +98,8 @@ fun Dashboard(navController: NavController) {
                 title = "Poids",
                 icon = R.drawable.icon_weight_white,
                 backgroundColorIcon = R.color.weight,
-                // TODO add weight module and fix
-                onIconClick = { navController.navigate("userProfile") },
-                onInfoClick = { navController.navigate("userProfile") }
+                onIconClick = { navController.navigate("weight") },
+                onInfoClick = { navController.navigate("weight") }
             )
 
             ModuleCard(

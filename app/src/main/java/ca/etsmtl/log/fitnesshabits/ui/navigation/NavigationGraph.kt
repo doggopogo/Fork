@@ -11,6 +11,7 @@ import ca.etsmtl.log.fitnesshabits.ui.screens.modules.Diabetes
 import ca.etsmtl.log.fitnesshabits.ui.screens.modules.Hydration
 import ca.etsmtl.log.fitnesshabits.ui.screens.modules.MedicationSupplement
 import ca.etsmtl.log.fitnesshabits.ui.screens.modules.Nutrition
+import ca.etsmtl.log.fitnesshabits.ui.screens.modules.Weight
 import ca.etsmtl.log.fitnesshabits.ui.screens.modules.PhysicalActivity
 import ca.etsmtl.log.fitnesshabits.ui.screens.modules.Sleep
 import ca.etsmtl.log.fitnesshabits.ui.screens.UserProfile
@@ -30,6 +31,7 @@ fun NavigationGraph() {
         composable("sleep") { Sleep(navController) }
         composable("bioBreak") { BioBreak(navController) }
         composable("physicalActivity") { PhysicalActivity(navController) }
+        composable("weight") { Weight(navController) }
         composable("alcohol") { Alcohol(navController) }
         composable("diabetes") { Diabetes(navController) }
 
