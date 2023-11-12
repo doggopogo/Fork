@@ -1,4 +1,4 @@
-package ca.etsmtl.log.fitnesshabits.viewmodel
+package ca.etsmtl.log.fitnesshabits.viewmodels
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel

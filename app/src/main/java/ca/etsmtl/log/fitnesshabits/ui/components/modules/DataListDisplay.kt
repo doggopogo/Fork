@@ -10,8 +10,7 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.material.Button
-import androidx.compose.material.ButtonDefaults
+import androidx.compose.foundation.lazy.items
 import androidx.compose.material.Divider
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
@@ -19,14 +18,21 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import ca.etsmtl.log.fitnesshabits.R
+import ca.etsmtl.log.fitnesshabits.ui.Drink
+import ca.etsmtl.log.fitnesshabits.ui.SampleData
 import ca.etsmtl.log.fitnesshabits.ui.components.RoundButton
-import java.util.Date
 
 @Composable
-fun DataListDisplay(title: String, onClick: () -> Unit) {
+fun DataListDisplay(
+    title: String,
+    drinksList: List<Drink> = SampleData.drinks, // Default for now
+    color: Int,
+    onClick: () -> Unit
+) {
     Column(
         modifier = Modifier.padding(vertical = 8.dp)
     )
@@ -39,59 +45,30 @@ fun DataListDisplay(title: String, onClick: () -> Unit) {
 
         Spacer(modifier = Modifier.height(8.dp))
 
-        Row(
-            modifier = Modifier
-                .fillMaxWidth(),
-            horizontalArrangement = Arrangement.SpaceBetween
-        ) {
-            Text(text = "Prot: 0.0g")
-            Text(text = "Glu: 0.0g")
-            Text(text = "Fibr: 0.0g")
-            Text(text = "Gras: 0.0g")
-        }
+        ColoredDivider(color)
 
         Spacer(modifier = Modifier.height(8.dp))
-        Divider()
-
-        RowContent()
-
-        Spacer(modifier = Modifier.height(16.dp))
-
-        Column(
-            modifier = Modifier.fillMaxWidth(),
-            horizontalAlignment = Alignment.End
-        ) {
-            Button(
-                onClick = onClick,
-                colors = ButtonDefaults.buttonColors(backgroundColor = Color(0xFFF1F1F1))
-            ) {
-                Text(
-                    text = "Tout afficher",
-                    fontSize = 15.sp,
-                    fontWeight = FontWeight.Bold,
-                )
-            }
-        }
+        RowContent(drinksList)
     }
 }
 
 @Composable
-fun RowContent() {
+fun RowContent(drinksList: List<Drink>) {
+    // Sort the list by the 'name' attribute
+    val sortedDrinks = drinksList.sortedBy { it.name }
     LazyColumn(
         modifier = Modifier
             .fillMaxWidth()
-            .fillMaxHeight(0.7f),
+            .fillMaxHeight(0.80f),
     ) {
-        item {
-            RowEntry()
-            RowEntry()
-            RowEntry()
+        items(sortedDrinks) { drink ->
+            RowEntry(drink)
         }
     }
 }
 
 @Composable
-fun RowEntry() {
+fun RowEntry(drink: Drink) {
     Row(
         modifier = Modifier
             .fillMaxWidth()
@@ -99,7 +76,7 @@ fun RowEntry() {
         verticalAlignment = Alignment.CenterVertically,
         horizontalArrangement = Arrangement.SpaceBetween
     ) {
-        HydrationRowContent("Perrier", 250, Date(23, 11, 1))
+        HydrationRowContent(drink)
         Row {
             RoundButton(R.drawable.icon_edit_pencil, onClick = { /* Handle edit click */ })
             Spacer(modifier = Modifier.width(8.dp))
@@ -114,14 +91,28 @@ fun RowEntry() {
 }
 
 @Composable
-fun HydrationRowContent(type: String, volume: Int, date: Date) {
+fun HydrationRowContent(drink: Drink) {
     Column {
         Text(
-            text = type,
+            text = drink.name,
             fontSize = 18.sp,
             fontWeight = FontWeight.Bold
         )
-        Text(text = "Quantité bue : $volume ml")
-        Text(text = date.toString())
+        Text(
+            text = drink.format + ", ${drink.quantity} ml",
+        )
+        Text(
+            text = "Prot: ${drink.protein} " +
+                    "Glu: ${drink.carbohydrates} " +
+                    "Fibr: ${drink.fiber} " +
+                    "Gras: ${drink.fat} "
+        )
+
     }
+}
+
+@Preview(showBackground = true)
+@Composable
+fun DataListDisplayPreview() {
+    DataListDisplay(title = "Liste des brevages", color = R.color.hydration) {}
 }

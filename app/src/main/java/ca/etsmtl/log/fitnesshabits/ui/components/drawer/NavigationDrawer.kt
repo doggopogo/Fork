@@ -29,10 +29,12 @@ fun NavigationDrawer(
     navController: NavController,
     scaffoldState: ScaffoldState
 ) {
-    Box(modifier = Modifier.padding(16.dp)) {
+    Box(modifier = Modifier
+        .padding(16.dp)
+        .padding(top = 24.dp)) {
         Column {
             DrawerHeader(
-                userName = "TODO change",
+                userName = "John Doe",
                 navController = navController,
                 scaffoldState = scaffoldState
             )

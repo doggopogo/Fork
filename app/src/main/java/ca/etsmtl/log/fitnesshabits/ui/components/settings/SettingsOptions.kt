@@ -25,7 +25,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import ca.etsmtl.log.fitnesshabits.R
 import ca.etsmtl.log.fitnesshabits.data.preferences.SettingsEnums
-import ca.etsmtl.log.fitnesshabits.viewmodel.SettingsViewModel
+import ca.etsmtl.log.fitnesshabits.viewmodels.SettingsViewModel
 
 @Composable
 fun DataFormatOption(settingsViewModel: SettingsViewModel) {

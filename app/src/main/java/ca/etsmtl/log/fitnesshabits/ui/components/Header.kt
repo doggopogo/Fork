@@ -20,6 +20,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import ca.etsmtl.log.fitnesshabits.R
@@ -35,7 +36,7 @@ fun Header(title: String, color: Int = R.color.appGreen, navigateBack: () -> Uni
             .height(92.dp)
             .padding(horizontal = 8.dp, vertical = 12.dp)
             .padding(top = 24.dp),
-        horizontalArrangement = Arrangement.SpaceBetween,
+        horizontalArrangement = Arrangement.Center,
         verticalAlignment = Alignment.CenterVertically
     ) {
         IconButton(onClick = { navigateBack() }) {
@@ -46,14 +47,20 @@ fun Header(title: String, color: Int = R.color.appGreen, navigateBack: () -> Uni
                 tint = white
             )
         }
-        Spacer(modifier = Modifier.width(32.dp))
         Text(
             text = title,
             fontWeight = FontWeight.Bold,
             fontSize = 20.sp,
-            textAlign = TextAlign.Left,
-            modifier = Modifier.fillMaxWidth(),
+            textAlign = TextAlign.Center,
+            modifier = Modifier.fillMaxWidth()
+                .padding(end = 24.dp),
             color = white
         )
+    }
+}
+@Preview(showBackground = true)
+@Composable
+fun HeaderPreview() {
+    Header(title = "Hello world") {
     }
 }

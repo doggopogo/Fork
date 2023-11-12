@@ -1,19 +1,12 @@
 package ca.etsmtl.log.fitnesshabits
 
-import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.activity.compose.setContent
-import androidx.annotation.RequiresApi
-import androidx.core.content.ContextCompat
 import ca.etsmtl.log.fitnesshabits.ui.navigation.NavigationGraph
-import androidx.biometric.BiometricManager
-import androidx.biometric.BiometricPrompt
-import android.app.KeyguardManager
-import android.content.Context
-import android.content.Intent
-import androidx.activity.result.contract.ActivityResultContracts
-import android.util.Log
+import androidx.lifecycle.viewmodel.compose.viewModel
+import ca.etsmtl.log.fitnesshabits.viewmodels.modules.AddHydrationViewModel
+import ca.etsmtl.log.fitnesshabits.viewmodels.modules.AddHydrationViewModelFactory
 
 /*
 class MainActivity : AppCompatActivity() {
@@ -134,7 +127,11 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
-            NavigationGraph()
+            val hydrationRepository = (application as App).hydrationRepository
+            val viewModel: AddHydrationViewModel = viewModel(
+                factory = AddHydrationViewModelFactory(hydrationRepository)
+            )
+            NavigationGraph(viewModel)
         }
     }
 }

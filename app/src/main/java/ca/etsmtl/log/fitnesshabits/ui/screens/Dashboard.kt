@@ -12,13 +12,32 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import androidx.compose.material.*
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.runtime.rememberCoroutineScope
+import androidx.lifecycle.viewmodel.compose.viewModel
 import ca.etsmtl.log.fitnesshabits.ui.components.ModuleCard
 import kotlinx.coroutines.launch
 import ca.etsmtl.log.fitnesshabits.R
+import ca.etsmtl.log.fitnesshabits.data.database.repositories.HydrationRepository
+import ca.etsmtl.log.fitnesshabits.ui.screens.modulesDialogWindows.HydrationDialogWindow
+import ca.etsmtl.log.fitnesshabits.viewmodels.DashboardViewModel
+import ca.etsmtl.log.fitnesshabits.viewmodels.modules.AddHydrationViewModel
+import ca.etsmtl.log.fitnesshabits.viewmodels.modules.AddHydrationViewModelFactory
 
 @Composable
-fun Dashboard(navController: NavController) {
+fun Dashboard(
+    navController: NavController,
+    addHydrationRepository: HydrationRepository,
+    dashboardViewModel: DashboardViewModel = viewModel(),
+) {
+    // Create the ViewModelFactory with the repository
+    val addHydrationViewModelFactory = AddHydrationViewModelFactory(addHydrationRepository)
+
+    // Obtain the ViewModel instance using the factory
+    val addHydrationViewModel: AddHydrationViewModel = viewModel(factory = addHydrationViewModelFactory)
+    val showHydrationDialog = dashboardViewModel.showHydrationDialog.observeAsState()
+    val hydrationTypes by addHydrationViewModel.hydrationTypes.observeAsState(initial = emptyList())
     val scaffoldState = rememberScaffoldState()
     val scope = rememberCoroutineScope()
     Scaffold(
@@ -50,7 +69,7 @@ fun Dashboard(navController: NavController) {
                 icon = R.drawable.icon_hydration_white,
                 backgroundColorIcon = R.color.hydration,
                 onIconClick = { navController.navigate("hydration") },
-                onInfoClick = { navController.navigate("hydration") }
+                onInfoClick = { dashboardViewModel.setShowHydrationDialog(true) }
             )
 
             ModuleCard(
@@ -118,6 +137,9 @@ fun Dashboard(navController: NavController) {
                 onInfoClick = { navController.navigate("diabetes") }
             )
         }
+    }
+    if (showHydrationDialog.value == true) {
+        HydrationDialogWindow(hydrationTypes = hydrationTypes, onDismiss = { dashboardViewModel.setShowHydrationDialog(false) })
     }
 }
 

@@ -1,4 +1,4 @@
-package ca.etsmtl.log.fitnesshabits.helper
+package ca.etsmtl.log.fitnesshabits.helpers
 
 import android.Manifest
 import android.app.NotificationChannel

@@ -4,6 +4,7 @@ import androidx.compose.runtime.Composable
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import ca.etsmtl.log.fitnesshabits.App
 import ca.etsmtl.log.fitnesshabits.ui.screens.Dashboard
 import ca.etsmtl.log.fitnesshabits.ui.screens.modules.Alcohol
 import ca.etsmtl.log.fitnesshabits.ui.screens.modules.BioBreak
@@ -18,13 +19,16 @@ import ca.etsmtl.log.fitnesshabits.ui.screens.UserProfile
 import ca.etsmtl.log.fitnesshabits.ui.screens.Targets
 import ca.etsmtl.log.fitnesshabits.ui.screens.Settings
 import ca.etsmtl.log.fitnesshabits.ui.screens.Export
+import ca.etsmtl.log.fitnesshabits.ui.screens.modules.Hydration.AddHydration
+import ca.etsmtl.log.fitnesshabits.viewmodels.modules.AddHydrationViewModel
 
 @Composable
-fun NavigationGraph() {
+fun NavigationGraph(viewModel: AddHydrationViewModel) {
     val navController = rememberNavController()
+    val hydrationRepository = App.instance.hydrationRepository
     NavHost(navController, startDestination = "dashboard") {
         // Modules
-        composable("dashboard") { Dashboard(navController) }
+        composable("dashboard") {  Dashboard(navController, addHydrationRepository = hydrationRepository) }
         composable("hydration") { Hydration(navController) }
         composable("nutrition") { Nutrition(navController) }
         composable("medicationSupplement") { MedicationSupplement(navController) }
@@ -34,6 +38,10 @@ fun NavigationGraph() {
         composable("weight") { Weight(navController) }
         composable("alcohol") { Alcohol(navController) }
         composable("diabetes") { Diabetes(navController) }
+
+        // Add Hydration
+        composable("addHydration") {
+            AddHydration(navController, viewModel) }
 
         // Drawer screens
         composable("userProfile") { UserProfile(navController) }

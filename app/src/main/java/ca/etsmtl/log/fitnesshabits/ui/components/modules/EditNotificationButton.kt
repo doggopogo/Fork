@@ -17,11 +17,6 @@ fun EditNotificationButton(onClick: () -> Unit) {
     Row(
         verticalAlignment = Alignment.CenterVertically
     ) {
-        Text(
-            text = "Paramétrer les alertes",
-            color = Color(0xFF707070)
-        )
-        Spacer(modifier = Modifier.width(8.dp))
         RoundButton(
             R.drawable.icon_notifications_bell_2x,
             tintColor = Color(0xFF707070),

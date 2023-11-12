@@ -13,7 +13,7 @@ import ca.etsmtl.log.fitnesshabits.ui.components.settings.LanguageOption
 import ca.etsmtl.log.fitnesshabits.ui.components.settings.ModulesOption
 import ca.etsmtl.log.fitnesshabits.ui.components.settings.ResetOption
 import ca.etsmtl.log.fitnesshabits.ui.components.settings.ThemeOption
-import ca.etsmtl.log.fitnesshabits.viewmodel.SettingsViewModel
+import ca.etsmtl.log.fitnesshabits.viewmodels.SettingsViewModel
 
 @Composable
 fun Settings(navController: NavController) {

@@ -9,14 +9,13 @@ import androidx.navigation.NavController
 import ca.etsmtl.log.fitnesshabits.R
 import androidx.compose.foundation.layout.*
 import androidx.compose.ui.Alignment
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import ca.etsmtl.log.fitnesshabits.ui.components.modules.ColoredDivider
+import androidx.navigation.compose.rememberNavController
+import ca.etsmtl.log.fitnesshabits.ui.components.modules.BottomButtons
 import ca.etsmtl.log.fitnesshabits.ui.components.modules.DataListDisplay
-import ca.etsmtl.log.fitnesshabits.ui.components.modules.DateFilterButtons
 import ca.etsmtl.log.fitnesshabits.ui.components.modules.EditNotificationButton
 import ca.etsmtl.log.fitnesshabits.ui.components.modules.EditTargetButton
-import ca.etsmtl.log.fitnesshabits.ui.components.modules.Graph
-
 
 @Composable
 fun Hydration(navController: NavController) {
@@ -31,19 +30,32 @@ fun Hydration(navController: NavController) {
                 .padding(horizontal = 32.dp)
         ) {
             Spacer(modifier = Modifier.height(16.dp))
-            Column (
+            Row (
                 modifier = Modifier.fillMaxWidth(),
-                horizontalAlignment = Alignment.End
+                verticalAlignment = Alignment.CenterVertically,
+                horizontalArrangement = Arrangement.End
             ) {
                 EditNotificationButton {}
-                Spacer(modifier = Modifier.height(8.dp))
+                Spacer(modifier = Modifier.width(8.dp))
                 EditTargetButton("10L", R.color.hydration) {}
             }
-            Graph()
-            ColoredDivider(color = R.color.hydration)
-            DateFilterButtons()
-            DataListDisplay(title = "Quantité totale bue : 600 mL") {
+
+            Spacer(modifier = Modifier.height(6.dp))
+
+            DataListDisplay(title = "Liste de breuvages", color = R.color.hydration) {
             }
+            BottomButtons(
+                addButtonEnabled = true,
+                color = R.color.hydration,
+                onAddClick = { navController.navigate("addHydration") },
+                onShowAllClick = {}
+            )
         }
     }
+}
+
+@Preview(showSystemUi = true)
+@Composable
+fun HydrationPreview() {
+    Hydration(navController = rememberNavController())
 }
