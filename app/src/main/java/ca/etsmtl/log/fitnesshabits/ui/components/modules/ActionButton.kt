@@ -7,6 +7,7 @@ import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.unit.TextUnit
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 
@@ -23,7 +24,8 @@ import androidx.compose.ui.unit.sp
 fun ActionButton(
     text: String,
     onClick: () -> Unit,
-    style: ActionButtonStyle = ActionButtonStyle()
+    style: ActionButtonStyle = ActionButtonStyle(),
+    fontSize: TextUnit = 15.sp
 ) {
     Button(
         onClick = onClick,
@@ -32,7 +34,7 @@ fun ActionButton(
     ) {
         Text(
             text = text,
-            fontSize = 15.sp,
+            fontSize = fontSize,
             color = style.textColor,
             style = style.textStyle
         )

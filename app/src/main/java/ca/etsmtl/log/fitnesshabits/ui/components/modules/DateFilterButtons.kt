@@ -10,11 +10,16 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.colorResource
+import androidx.compose.ui.text.SpanStyle
+import androidx.compose.ui.text.buildAnnotatedString
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.unit.dp
 
 @Composable
-fun DateFilterButtons() {
+fun DateFilterButtons(moduleColor: Color) {
     var currentTimeFrame = remember { mutableStateOf(TimeFrames.WEEK) }
     Row(
         modifier = Modifier
@@ -24,12 +29,15 @@ fun DateFilterButtons() {
     ) {
         for (timeFrame in TimeFrames.values()) {
             Text(
-                text = timeFrame.text,
-                fontWeight =
-                if (currentTimeFrame.value == timeFrame) {
-                    FontWeight.Bold
-                } else {
-                    FontWeight.Normal
+                buildAnnotatedString {
+                    withStyle(
+                        style = SpanStyle(
+                            fontWeight = if (currentTimeFrame.value == timeFrame) FontWeight.Bold else FontWeight.Normal,
+                            color = if (currentTimeFrame.value == timeFrame) moduleColor else Color.Black
+                        )
+                    ) {
+                        append(timeFrame.text)
+                    }
                 },
                 modifier = Modifier.clickable {
                     currentTimeFrame.value = timeFrame
@@ -46,3 +54,4 @@ enum class TimeFrames(val text: String) {
     SEMESTER("Semestre"),
     YEAR("Année")
 }
+

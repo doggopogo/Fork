@@ -4,44 +4,67 @@ import androidx.compose.runtime.Composable
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
-import ca.etsmtl.log.fitnesshabits.App
 import ca.etsmtl.log.fitnesshabits.ui.screens.Dashboard
-import ca.etsmtl.log.fitnesshabits.ui.screens.modules.Alcohol
-import ca.etsmtl.log.fitnesshabits.ui.screens.modules.BioBreak
-import ca.etsmtl.log.fitnesshabits.ui.screens.modules.Diabetes
-import ca.etsmtl.log.fitnesshabits.ui.screens.modules.Hydration
-import ca.etsmtl.log.fitnesshabits.ui.screens.modules.MedicationSupplement
-import ca.etsmtl.log.fitnesshabits.ui.screens.modules.Nutrition
-import ca.etsmtl.log.fitnesshabits.ui.screens.modules.Weight
-import ca.etsmtl.log.fitnesshabits.ui.screens.modules.PhysicalActivity
-import ca.etsmtl.log.fitnesshabits.ui.screens.modules.Sleep
+import ca.etsmtl.log.fitnesshabits.ui.screens.modules.hydration.Hydration
+import ca.etsmtl.log.fitnesshabits.ui.screens.modules.hydration.AddHydrationItem
+import ca.etsmtl.log.fitnesshabits.ui.screens.modules.alcohol.Alcohol
+import ca.etsmtl.log.fitnesshabits.ui.screens.modules.biobreak.BioBreak
+import ca.etsmtl.log.fitnesshabits.ui.screens.modules.diabetes.Diabetes
+import ca.etsmtl.log.fitnesshabits.ui.screens.modules.medicationsupplement.MedicationSupplement
+import ca.etsmtl.log.fitnesshabits.ui.screens.modules.food.Food
+import ca.etsmtl.log.fitnesshabits.ui.screens.modules.weight.Weight
+import ca.etsmtl.log.fitnesshabits.ui.screens.modules.physicalactivity.PhysicalActivity
+import ca.etsmtl.log.fitnesshabits.ui.screens.modules.sleep.Sleep
 import ca.etsmtl.log.fitnesshabits.ui.screens.UserProfile
 import ca.etsmtl.log.fitnesshabits.ui.screens.Targets
 import ca.etsmtl.log.fitnesshabits.ui.screens.Settings
 import ca.etsmtl.log.fitnesshabits.ui.screens.Export
-import ca.etsmtl.log.fitnesshabits.ui.screens.modules.Hydration.AddHydration
-import ca.etsmtl.log.fitnesshabits.viewmodels.modules.AddHydrationViewModel
+import ca.etsmtl.log.fitnesshabits.ui.screens.modulesHistory.HydrationHistory
 
 @Composable
-fun NavigationGraph(viewModel: AddHydrationViewModel) {
+fun NavigationGraph() {
     val navController = rememberNavController()
-    val hydrationRepository = App.instance.hydrationRepository
     NavHost(navController, startDestination = "dashboard") {
-        // Modules
-        composable("dashboard") {  Dashboard(navController, addHydrationRepository = hydrationRepository) }
+
+        // Dashboard
+        composable("dashboard") { Dashboard(navController) }
+
+        // region Modules
+
+        // Hydration
         composable("hydration") { Hydration(navController) }
-        composable("nutrition") { Nutrition(navController) }
+        composable("addHydrationItem") { AddHydrationItem(navController) }
+
+        // Food
+        composable("food") { Food(navController) }
+
+        // Medication & Supplement
         composable("medicationSupplement") { MedicationSupplement(navController) }
+
+        // Sleep
         composable("sleep") { Sleep(navController) }
+
+        // Bio Break
         composable("bioBreak") { BioBreak(navController) }
+
+        // Physical Activity
         composable("physicalActivity") { PhysicalActivity(navController) }
+
+        // Weight
         composable("weight") { Weight(navController) }
+
+        // Alcohol
         composable("alcohol") { Alcohol(navController) }
+
+        // Diabetes
         composable("diabetes") { Diabetes(navController) }
 
-        // Add Hydration
-        composable("addHydration") {
-            AddHydration(navController, viewModel) }
+        // endregion
+
+        // Hydration History
+        composable(route = "hydrationHistory") {
+            HydrationHistory(navController)
+        }
 
         // Drawer screens
         composable("userProfile") { UserProfile(navController) }

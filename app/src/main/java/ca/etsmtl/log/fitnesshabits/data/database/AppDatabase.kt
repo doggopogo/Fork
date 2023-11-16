@@ -1,40 +1,63 @@
 package ca.etsmtl.log.fitnesshabits.data.database
 
-import android.content.Context
 import androidx.room.Database
-import androidx.room.Room
 import androidx.room.RoomDatabase
-import ca.etsmtl.log.fitnesshabits.data.database.daos.HydrationDao
-import ca.etsmtl.log.fitnesshabits.data.database.entities.HydrationType
+import ca.etsmtl.log.fitnesshabits.data.database.entities.nutrition.*
+import ca.etsmtl.log.fitnesshabits.data.database.daos.nutrition.*
+import ca.etsmtl.log.fitnesshabits.data.database.entities.Unit
+import ca.etsmtl.log.fitnesshabits.data.database.daos.UnitDao
 
-// Annotate the class to be a Room database, declare the entities that belong in the database and set the version.
-@Database(entities = [HydrationType::class], version = 1, exportSchema = false)
+@Database(
+    entities = [
+        Log::class,
+
+        Item::class,
+        Type::class,
+        HydrationIndex::class,
+        AlcoholContent::class,
+
+        Serving::class,
+        ItemServing::class,
+
+        Macronutrient::class,
+        ItemMacronutrient::class,
+
+        Micronutrient::class,
+        ItemMicronutrient::class,
+
+        BioactiveCompound::class,
+        ItemBioactiveCompound::class,
+
+        Unit::class,
+    ],
+    version = 1,
+    exportSchema = false
+)
 abstract class AppDatabase : RoomDatabase() {
-    // The DAO is abstract because Room will generate the implementation for you.
-    abstract fun hydrationDao(): HydrationDao
+    // region DAOs
+    abstract fun logDao(): LogDao
 
-    // Define a companion object, this allows us to add functions on the AppDatabase class.
-    companion object {
-        // @Volatile annotations your instance will keep visible to all threads.
-        @Volatile private var INSTANCE: AppDatabase? = null
+    abstract fun itemDao(): ItemDao
+    abstract fun typeDao(): TypeDao
+    abstract fun hydrationIndexDao(): HydrationIndexDao
+    abstract fun alcoholContentDao(): AlcoholContentDao
 
-        // The function to get the database is a singleton to prevent having multiple instances of the database opened at the same time.
-        fun getDatabase(context: Context): AppDatabase {
-            // If the INSTANCE is not null, then return it, if it is, then create the database.
-            return INSTANCE ?: synchronized(this) {
-                val instance = Room.databaseBuilder(
-                    context.applicationContext,
-                    AppDatabase::class.java,
-                    "fitness_habits_database"
-                )
-                    // Wipes and rebuilds instead of migrating if no Migration object.
-                    // Migration is not part of this code snippet.
-                    .fallbackToDestructiveMigration()
-                    .build()
-                INSTANCE = instance
-                // Return instance; INSTANCE is the newly created database.
-                instance
-            }
-        }
-    }
+    abstract fun servingDao(): ServingDao
+    abstract fun itemServingDao(): ItemServingDao
+    abstract fun itemWithServingsDao(): ItemWithServingsDao
+
+    abstract fun macronutrientDao(): MacronutrientDao
+    abstract fun itemMacronutrientDao(): ItemMacronutrientDao
+    abstract fun itemWithMacronutrientsDao(): ItemWithMacronutrientsDao
+
+    abstract fun micronutrientDao(): MicronutrientDao
+    abstract fun itemMicronutrientDao(): ItemMicronutrientDao
+    abstract fun itemWithMicronutrientsDao(): ItemWithMicronutrientsDao
+
+    abstract fun bioactiveCompoundDao(): BioactiveCompoundDao
+    abstract fun itemBioactiveCompoundDao(): ItemBioactiveCompoundDao
+    abstract fun itemWithBioactiveCompoundsDao(): ItemWithBioactiveCompoundsDao
+
+    abstract fun unitDao(): UnitDao
+    // endregion
 }

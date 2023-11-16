@@ -23,15 +23,23 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import ca.etsmtl.log.fitnesshabits.R
 import ca.etsmtl.log.fitnesshabits.ui.Drink
-import ca.etsmtl.log.fitnesshabits.ui.SampleData
+import ca.etsmtl.log.fitnesshabits.ui.HydrationEntry
+import ca.etsmtl.log.fitnesshabits.ui.SampleData.hydrationEntries
 import ca.etsmtl.log.fitnesshabits.ui.components.RoundButton
+import java.text.SimpleDateFormat
+import java.util.Date
+import java.util.Locale
 
+// Sealed class to represent different types of items in the data list
+sealed class ListItem {
+    data class DrinkItem(val drink: Drink) : ListItem()
+    data class HydrationEntryItem(val hydrationEntry: HydrationEntry) : ListItem()
+}
 @Composable
-fun DataListDisplay(
+fun <T : ListItem> DataListDisplay(
     title: String,
-    drinksList: List<Drink> = SampleData.drinks, // Default for now
-    color: Int,
-    onClick: () -> Unit
+    dataList: List<T> = emptyList(),
+    color: Int
 ) {
     Column(
         modifier = Modifier.padding(vertical = 8.dp)
@@ -48,27 +56,43 @@ fun DataListDisplay(
         ColoredDivider(color)
 
         Spacer(modifier = Modifier.height(8.dp))
-        RowContent(drinksList)
+        RowContent(dataList)
     }
 }
 
+/**
+ * Sort the data list based on the type of list item
+ */
 @Composable
-fun RowContent(drinksList: List<Drink>) {
-    // Sort the list by the 'name' attribute
-    val sortedDrinks = drinksList.sortedBy { it.name }
+fun <T : ListItem>  RowContent(dataList: List<T>) {
+    // Sort the list based on the type
+    val sortedList = when {
+        // Drink list: sort by name
+        dataList.isNotEmpty() && dataList[0] is ListItem.DrinkItem -> {
+            dataList.sortedBy { (it as ListItem.DrinkItem).drink.name }
+        }
+        // HistoryEntry: sort by date
+        dataList.isNotEmpty() && dataList[0] is ListItem.HydrationEntryItem -> {
+            dataList.sortedByDescending { (it as ListItem.HydrationEntryItem).hydrationEntry.timestamp }
+        }
+        else -> dataList
+    }
     LazyColumn(
         modifier = Modifier
             .fillMaxWidth()
             .fillMaxHeight(0.80f),
     ) {
-        items(sortedDrinks) { drink ->
-            RowEntry(drink)
+        items(sortedList) { data ->
+            RowEntry(data)
         }
     }
 }
 
+/**
+ * Display the row content based on the type of list item
+ */
 @Composable
-fun RowEntry(drink: Drink) {
+fun RowEntry(item: ListItem) {
     Row(
         modifier = Modifier
             .fillMaxWidth()
@@ -76,7 +100,14 @@ fun RowEntry(drink: Drink) {
         verticalAlignment = Alignment.CenterVertically,
         horizontalArrangement = Arrangement.SpaceBetween
     ) {
-        HydrationRowContent(drink)
+        when (item) {
+            is ListItem.DrinkItem -> {
+                HydrationRowContent(item.drink)
+            }
+            is ListItem.HydrationEntryItem -> {
+                HydrationHistoryRowContent(item.hydrationEntry)
+            }
+        }
         Row {
             RoundButton(R.drawable.icon_edit_pencil, onClick = { /* Handle edit click */ })
             Spacer(modifier = Modifier.width(8.dp))
@@ -90,6 +121,9 @@ fun RowEntry(drink: Drink) {
     Divider()
 }
 
+/**
+ * Un breuvage
+ */
 @Composable
 fun HydrationRowContent(drink: Drink) {
     Column {
@@ -107,12 +141,37 @@ fun HydrationRowContent(drink: Drink) {
                     "Fibr: ${drink.fiber} " +
                     "Gras: ${drink.fat} "
         )
+    }
+}
+
+/**
+ * Une transaction (consommation): breuvage + date
+ */
+@Composable
+fun HydrationHistoryRowContent(drinkEntry: HydrationEntry) {
+    Column {
+        HydrationRowContent(drinkEntry.drink)
+        Text(text = formatDateForHydrationEntry(drinkEntry.timestamp))
 
     }
 }
 
+/**
+ * Formate les dates des consommations (Francais)
+ */
+fun formatDateForHydrationEntry(date: Date) : String {
+    val pattern = "dd / MM / yyyy 'à' HH'h'00"
+    val dateFormatter = SimpleDateFormat(pattern, Locale.getDefault())
+    return dateFormatter.format(date)
+}
+
+
 @Preview(showBackground = true)
 @Composable
 fun DataListDisplayPreview() {
-    DataListDisplay(title = "Liste des brevages", color = R.color.hydration) {}
+    DataListDisplay(
+        title = "Historique de consommation",
+        dataList = hydrationEntries.map { ListItem.HydrationEntryItem(it) },
+        color = R.color.hydration
+    )
 }
