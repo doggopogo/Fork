@@ -24,7 +24,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
@@ -36,7 +35,7 @@ import ca.etsmtl.log.fitnesshabits.ui.theme.appText
 fun ModuleCard(
     title: String,
     icon: Int,
-    backgroundColorIcon: Int,
+    backgroundColorIcon: Color,
     onIconClick: () -> Unit,
     onInfoClick: () -> Unit
 ) {
@@ -61,7 +60,7 @@ fun ModuleCard(
                     .width(105.dp)
                     .height(100.dp)
                     .clickable(onClick = onIconClick),
-                backgroundColor = colorResource(id = backgroundColorIcon)
+                backgroundColor = backgroundColorIcon
             ) {
                 Image( //image du module
                     painter = painterResource(id = icon),

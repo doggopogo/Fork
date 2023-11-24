@@ -3,9 +3,9 @@ package ca.etsmtl.log.fitnesshabits.di.data.database.repositories.nutrition
 import ca.etsmtl.log.fitnesshabits.data.database.daos.nutrition.BioactiveCompoundDao
 import ca.etsmtl.log.fitnesshabits.data.database.daos.nutrition.ItemBioactiveCompoundDao
 import ca.etsmtl.log.fitnesshabits.data.database.daos.nutrition.ItemWithBioactiveCompoundsDao
-import ca.etsmtl.log.fitnesshabits.data.database.repositories.nutrition.BioactiveCompoundRepository
-import ca.etsmtl.log.fitnesshabits.data.database.repositories.nutrition.ItemBioactiveCompoundRepository
-import ca.etsmtl.log.fitnesshabits.data.database.repositories.nutrition.ItemWithBioactiveCompoundsRepository
+import ca.etsmtl.log.fitnesshabits.data.repositories.nutrition.BioactiveCompoundRepository
+import ca.etsmtl.log.fitnesshabits.data.repositories.nutrition.ItemBioactiveCompoundRepository
+import ca.etsmtl.log.fitnesshabits.data.repositories.nutrition.ItemWithBioactiveCompoundsRepository
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn

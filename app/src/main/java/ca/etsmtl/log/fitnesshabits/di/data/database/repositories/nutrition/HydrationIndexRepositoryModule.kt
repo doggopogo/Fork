@@ -1,7 +1,7 @@
 package ca.etsmtl.log.fitnesshabits.di.data.database.repositories.nutrition
 
 import ca.etsmtl.log.fitnesshabits.data.database.daos.nutrition.HydrationIndexDao
-import ca.etsmtl.log.fitnesshabits.data.database.repositories.nutrition.HydrationIndexRepository
+import ca.etsmtl.log.fitnesshabits.data.repositories.nutrition.HydrationIndexRepository
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn

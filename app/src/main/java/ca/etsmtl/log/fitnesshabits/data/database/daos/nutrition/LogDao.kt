@@ -44,4 +44,14 @@ interface LogDao {
         timestamp: Long,
         servingMultiplier: Float
     ): Int  // by convention, updating a row returns the number of affected rows as an Int
+
+    // Get the logs for items of type typeId
+    @Query("SELECT Log.* FROM Log INNER JOIN Item ON Log.itemId = Item.id WHERE Item.typeId = :typeId ORDER BY Log.timestamp DESC")
+    suspend fun getLogsByItemTypeId(typeId: Int): List<Log>
+
+    // Get item id list of most commonly used item of type id
+    @Query("SELECT itemId FROM Log WHERE EXISTS " +
+            "(SELECT 1 FROM Item WHERE Item.id = Log.itemId AND Item.typeId = :typeId) " +
+            "GROUP BY itemId ORDER BY COUNT(itemId) DESC")
+    suspend fun getItemIdsOrderedByUsage(typeId: Int): List<Int>
 }

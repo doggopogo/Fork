@@ -6,6 +6,6 @@ import androidx.room.PrimaryKey
 
 @Entity
 data class AlcoholContent(
-    @PrimaryKey(autoGenerate = true) val id: Int,
+    @PrimaryKey(autoGenerate = true) val id: Int = 0,
     @ColumnInfo val percentage: Float
 )

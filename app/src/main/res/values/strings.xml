@@ -1,21 +1,125 @@
 <resources>
+    <string name="app_name" translatable="false">FitnessHabits</string>
 
-    <string name="app_name">FitnessHabits</string>
-    <string name="app_name_Android">FitnessHabits</string>
-    <string name="app_name_Habits">FitnessHabits</string>
-    <string name="home">Accueil</string>
-    <string name="profil">Profil</string>
-    <string name="export">Exporter</string>
-    <string name="target">Cibles</string>
-    <string name="preference">Préférences</string>
-    <string name="language">Langue</string>
-    <string name="logOut">Déconnexion</string>
+    <!--Modules-->
+    <string name="hydration">Hydration</string>
+    <string name="food">Food</string>
+    <string name="medication_supplement">Medication &amp; Supplement</string>
+    <string name="sleep">Sleep</string>
+    <string name="biobreak">Bio Break</string>
+    <string name="physical_activity">Physical Activity</string>
+    <string name="weight">Weight</string>
+    <string name="alcohol">Alcohol</string>
+    <string name="diabetes">Blood Sugar</string>
 
-    <string name="save">Sauvegarder</string>
+    <!--Login module-->
+    <string name="connect_with_biometric">Login with biometric</string>
+    <string name="open_app">Open</string>
 
-    <!-- Profile screen-->
-    <string name="modify_password">Modifier mon mot de passe</string>
-    <string name="old_password">Ancien mot de passe</string>
-    <string name="new_password">Nouveau mot de passe</string>
-    <string name="confirm_password">Confirmer mot de passe</string>
+    <string name="biometric_not_available">Login with biometric is not available at this moment</string>
+    <string name="cancel_login">The login process was cancelled</string>
+    <string name="failed_login">The login failed, please try again</string>
+
+    <string name="biometric_title" translatable="false">Biometric Authentication</string>
+    <string name="biometric_description">Log in using your biometric credential</string>
+
+    <!--Side menu-->
+    <string name="profile_title">Profile</string>
+    <string name="profile_contentdescription">Go to profile screen</string>
+    <string name="targets_title">Targets</string>
+    <string name="targets_contentdescription">Go to targets screen</string>
+    <string name="settings_title">Settings</string>
+    <string name="settings_contentdescription">Go to settings screen</string>
+    <string name="export_title">Export</string>
+    <string name="export_contentdescription">Export your data</string>
+
+    <!--Settings menu-->
+    <string name="data_format_title">Data format</string>
+    <string name="time_format_title">Time format</string>
+    <string name="time_format_description">Choose Time Format</string>
+    <string name="date_format_title">Date format</string>
+    <string name="date_format_description">Choose Date Format</string>
+    <string name="unit_format_title">Date format</string>
+
+    <string name="volume_format_title">Volume format</string>
+    <string name="volume_format_description">Choose Volume Format</string>
+    <string name="weight_format_title">Weight format</string>
+    <string name="weight_format_description">Choose Weight Format</string>
+    <string name="height_format_title">Height format</string>
+    <string name="height_format_description">Choose Height Format</string>
+
+    <string name="enabled_module_title">Enabled Modules</string>
+    <string name="language_title">Language</string>
+    <string name="language_description">Choose Language</string>
+
+    <string name="theme_title">Theme</string>
+    <string name="theme_description">Choose Theme</string>
+
+    <string name="reset_title">Reset</string>
+    <string name="reset_description">Are you sure you want to proceed with the reset?</string>
+
+    <!--User profile-->
+    <string name="date_of_birth">DOB</string>
+    <string name="height_profile">Height</string>
+    <string name="weight_profile">Weight</string>
+    <string name="bmi">BMI</string>
+
+    <!--Hydration index-->
+    <string name="non_hydrating">Non-hydrating</string>
+    <string name="slightly_hydrating">Slightly hydrating</string>
+    <string name="moderately_hydrating">Moderately hydrating</string>
+    <string name="hydrating">Hydrating</string>
+    <string name="fully_hydrating">Fully hydrating</string>
+
+    <string name="beverage_consumed">Beverage consumed</string>
+
+    <!--Hydration-->
+    <string name="show_graph">Display the chart</string>
+    <string name="hide_graph">Hide the chart</string>
+    <string name="beverage_consumption_history_title">Beverage consumption history</string>
+
+    <string name="enter_target_title">Enter your target</string>
+
+    <string name="serving_title">Serving</string>
+    <string name="bioactive_compound_title">Bioactive Compound</string>
+    <string name="beverage_create_success">Beverage added successfully</string>
+
+    <!--Unit-->
+    <!--Volume-->
+    <string name="millilitre">Millilitre</string>
+    <string name="litre">Litre</string>
+    <!--Weight-->
+    <string name="microgram">Microgram</string>
+    <string name="milligram">Milligram</string>
+    <string name="gram">Gram</string>
+    <string name="kilogram">Kilogram</string>
+
+    <!--Macronutrient-->
+    <string name="macronutrient">Macronutrient</string>
+    <string name="micronutrient">Micronutrient</string>
+    <string name="calories">Calories</string>
+    <string name="total_fat">Total Fat</string>
+    <string name="saturated_fat">Saturated Fat</string>
+    <string name="trans_fat">Trans Fat</string>
+    <string name="polyunsaturated_fat">Polyunsaturated Fat</string>
+    <string name="monounsaturated_fat">Monounsaturated Fat</string>
+    <string name="total_carbohydrate">Total Carbohydrate</string>
+    <string name="dietary_fibre">Dietary Fibre</string>
+    <string name="total_sugars">Total Sugars</string>
+    <string name="added_sugars">Added Sugars</string>
+    <string name="protein">Protein</string>
+    <string name="sodium">Sodium</string>
+    <string name="cholesterol">Cholesterol</string>
+
+    <!--Basic input-->
+    <string name="cancel">Cancel</string>
+    <string name="ok">OK</string>
+    <string name="back">Back</string>
+    <string name="edit">Edit</string>
+    <string name="save">Save</string>
+    <string name="history">History</string>
+    <string name="loading">Loading</string>
+    <string name="empty">Empty</string>
+    <string name="add">Add</string>
+    <string name="show_all">Show all</string>
 </resources>

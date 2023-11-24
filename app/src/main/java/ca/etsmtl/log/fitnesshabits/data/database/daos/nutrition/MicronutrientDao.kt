@@ -106,7 +106,7 @@ interface ItemMicronutrientDao {
         id: Int,
         itemId: Int,
         micronutrientId: Int,
-        amount: Float
+        amount: Int
     ): Int
 
     // Update ItemMicronutrient by itemId and micronutrientId
@@ -114,7 +114,7 @@ interface ItemMicronutrientDao {
     suspend fun updateItemMicronutrientByItemIdAndMicronutrientId(
         itemId: Int,
         micronutrientId: Int,
-        amount: Float
+        amount: Int
     ): Int
 }
 

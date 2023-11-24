@@ -106,7 +106,7 @@ interface ItemBioactiveCompoundDao {
         id: Int,
         itemId: Int,
         bioactiveCompoundId: Int,
-        amount: Float
+        amount: Int
     ): Int
 
     // Update ItemBioactiveCompound by itemId and BioactiveCompoundId
@@ -114,7 +114,7 @@ interface ItemBioactiveCompoundDao {
     suspend fun updateItemBioactiveCompoundByItemIdAndBioactiveCompoundId(
         itemId: Int,
         bioactiveCompoundId: Int,
-        amount: Float
+        amount: Int
     ): Int
 }
 

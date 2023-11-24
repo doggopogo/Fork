@@ -1,7 +1,15 @@
 package ca.etsmtl.log.fitnesshabits.ui.screens
 
 import androidx.compose.foundation.Image
-import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.Divider
 import androidx.compose.material.IconButton
@@ -12,25 +20,31 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
-import ca.etsmtl.log.fitnesshabits.ui.components.Header
 import ca.etsmtl.log.fitnesshabits.R
+import ca.etsmtl.log.fitnesshabits.ui.components.Header
 
 @Composable
 fun UserProfile(navController: NavController) {
     var isEditable = remember { mutableStateOf(false) }
 
     Column(
-        modifier = Modifier.fillMaxSize(),
+        modifier = Modifier
+            .fillMaxSize()
+            .background(Color.White),
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.Top,
     ) {
-        Header(title = "User Profile", navigateBack = { navController.navigateUp() })
+        Header(
+            title = stringResource(id = R.string.profile_title),
+            navigateBack = { navController.navigateUp() })
 
         Box(
             modifier = Modifier
@@ -39,8 +53,8 @@ fun UserProfile(navController: NavController) {
                 .padding(top = 32.dp, start = 32.dp, end = 32.dp)
         ) {
             Image(
-                painter = painterResource(id = R.drawable.baseline_account_circle_gris),
-                contentDescription = "Profile Image",
+                painter = painterResource(id = R.drawable.icon_picture),
+                contentDescription = null,
                 modifier = Modifier
                     .size(200.dp)
                     .clip(CircleShape)
@@ -56,7 +70,7 @@ fun UserProfile(navController: NavController) {
             ) {
                 Image(
                     painter = painterResource(id = R.drawable.icon_edit_pencil),
-                    contentDescription = "Edit",
+                    contentDescription = stringResource(id = R.string.edit),
                     modifier = Modifier
                         .size(24.dp)
                 )
@@ -86,7 +100,7 @@ fun UserProfile(navController: NavController) {
                 verticalAlignment = Alignment.CenterVertically
             ) {
                 Text(
-                    text = "DOB: ",
+                    text = "${stringResource(id = R.string.date_of_birth)}: ",
                     fontSize = 20.sp,
                     fontWeight = FontWeight.Bold
                 )
@@ -100,7 +114,7 @@ fun UserProfile(navController: NavController) {
                 verticalAlignment = Alignment.CenterVertically
             ) {
                 Text(
-                    text = "Height: ",
+                    text = "${stringResource(id = R.string.height_profile)}: ",
                     fontSize = 20.sp,
                     fontWeight = FontWeight.Bold
                 )
@@ -114,7 +128,7 @@ fun UserProfile(navController: NavController) {
                 verticalAlignment = Alignment.CenterVertically
             ) {
                 Text(
-                    text = "Weight: ",
+                    text = "${stringResource(id = R.string.weight_profile)}: ",
                     fontSize = 20.sp,
                     fontWeight = FontWeight.Bold
                 )
@@ -128,7 +142,7 @@ fun UserProfile(navController: NavController) {
                 verticalAlignment = Alignment.CenterVertically
             ) {
                 Text(
-                    text = "BMI: ",
+                    text = "${stringResource(id = R.string.bmi)}: ",
                     fontSize = 20.sp,
                     fontWeight = FontWeight.Bold
                 )

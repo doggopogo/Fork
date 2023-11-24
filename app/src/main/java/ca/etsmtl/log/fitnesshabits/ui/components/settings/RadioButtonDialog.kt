@@ -1,7 +1,9 @@
 package ca.etsmtl.log.fitnesshabits.ui.components.settings
 
 import androidx.compose.foundation.clickable
-import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.material.AlertDialog
 import androidx.compose.material.RadioButton
 import androidx.compose.material.Text
@@ -10,7 +12,9 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
 import androidx.lifecycle.MutableLiveData
+import ca.etsmtl.log.fitnesshabits.R
 import ca.etsmtl.log.fitnesshabits.data.preferences.SettingsEnums
 
 @Composable
@@ -54,7 +58,7 @@ fun <T : Enum<T>> RadioButtonDialog(
             },
             dismissButton = {
                 TextButton(onClick = { showDialog.value = false }) {
-                    Text("Cancel")
+                    Text(stringResource(id = R.string.cancel))
                 }
             },
             confirmButton = {

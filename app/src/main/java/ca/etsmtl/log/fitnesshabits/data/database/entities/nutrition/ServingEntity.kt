@@ -9,12 +9,14 @@ import androidx.room.Junction
 import androidx.room.PrimaryKey
 import androidx.room.Relation
 
-@Entity
+@Entity(
+    indices = [Index(value = ["size", "name"], unique = true)]
+)
 data class Serving(
-    @PrimaryKey(autoGenerate = true) val id: Int,
+    @PrimaryKey(autoGenerate = true) val id: Int = 0,
     @ColumnInfo val size: Int,
     @ColumnInfo val name: String,
-    @ColumnInfo val amount: Float,
+    @ColumnInfo val amount: Int,
     @ColumnInfo val unitId: Int
 )
 
@@ -39,7 +41,7 @@ data class Serving(
         Index(value = ["itemId"], unique = false)]
 )
 data class ItemServing(
-    @PrimaryKey(autoGenerate = true) val id: Int,
+    @PrimaryKey(autoGenerate = true) val id: Int = 0,
     @ColumnInfo val itemId: Int,
     @ColumnInfo val servingId: Int,
     @ColumnInfo val baseServingMultiplier: Float

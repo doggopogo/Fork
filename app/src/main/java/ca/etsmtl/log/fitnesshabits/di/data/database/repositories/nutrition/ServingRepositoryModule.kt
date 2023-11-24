@@ -3,9 +3,9 @@ package ca.etsmtl.log.fitnesshabits.di.data.database.repositories.nutrition
 import ca.etsmtl.log.fitnesshabits.data.database.daos.nutrition.ServingDao
 import ca.etsmtl.log.fitnesshabits.data.database.daos.nutrition.ItemServingDao
 import ca.etsmtl.log.fitnesshabits.data.database.daos.nutrition.ItemWithServingsDao
-import ca.etsmtl.log.fitnesshabits.data.database.repositories.nutrition.ServingRepository
-import ca.etsmtl.log.fitnesshabits.data.database.repositories.nutrition.ItemServingRepository
-import ca.etsmtl.log.fitnesshabits.data.database.repositories.nutrition.ItemWithServingsRepository
+import ca.etsmtl.log.fitnesshabits.data.repositories.nutrition.ServingRepository
+import ca.etsmtl.log.fitnesshabits.data.repositories.nutrition.ItemServingRepository
+import ca.etsmtl.log.fitnesshabits.data.repositories.nutrition.ItemWithServingsRepository
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn

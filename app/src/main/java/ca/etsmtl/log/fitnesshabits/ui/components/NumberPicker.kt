@@ -18,7 +18,7 @@ import androidx.compose.ui.viewinterop.AndroidView
 @Composable
 fun NumberPicker(
     modifier: Modifier = Modifier,
-    startValueNumber : Int? = null,
+    startValueNumber: Int? = null,
     minValueNumber: Int,
     maxValueNumber: Int,
     incrementValueNumber: Int? = null,
@@ -29,10 +29,9 @@ fun NumberPicker(
         modifier = modifier
             .fillMaxWidth()
             .border(
-                BorderStroke(1.dp, Color.Black),
-                RoundedCornerShape(topStart = 10.dp, bottomStart = 10.dp)
-            )
-        ,
+                BorderStroke(7.dp, Color.Black.copy(alpha = 0.05f)),
+                RoundedCornerShape(12.dp)
+            ),
         factory = { context ->
             NumberPicker(context).apply {
 
@@ -60,15 +59,16 @@ fun NumberPicker(
                 setOnValueChangedListener { numberPicker, oldVal, newVal ->
                     setValue(newVal)
                 }
-                startValueNumber?.let {value = it}
+                startValueNumber?.let { value = it }
             }
         }
     )
 }
+
 @Preview(showBackground = true)
 @Composable
-private fun NumberPickerPreview(){
-    val value = remember { mutableStateOf(3)}
+private fun NumberPickerPreview() {
+    val value = remember { mutableStateOf(3) }
     val min = 3
     val max = 33
     NumberPicker(minValueNumber = min, maxValueNumber = max) {
@@ -78,16 +78,15 @@ private fun NumberPickerPreview(){
 
 @Preview(showBackground = true)
 @Composable
-private fun NumberPickerWithStartPreview(){
-
-    val value = remember { mutableStateOf(3)}
+private fun NumberPickerWithStartPreview() {
+    val value = remember { mutableStateOf(3) }
     val min = 0
     val max = 90
     NumberPicker(
         incrementValueNumber = 10,
         minValueNumber = min,
-        maxValueNumber = max) {
+        maxValueNumber = max
+    ) {
         //value.value = it
     }
-
 }

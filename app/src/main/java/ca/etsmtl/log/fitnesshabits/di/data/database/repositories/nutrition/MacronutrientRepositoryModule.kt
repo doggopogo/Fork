@@ -3,9 +3,9 @@ package ca.etsmtl.log.fitnesshabits.di.data.database.repositories.nutrition
 import ca.etsmtl.log.fitnesshabits.data.database.daos.nutrition.MacronutrientDao
 import ca.etsmtl.log.fitnesshabits.data.database.daos.nutrition.ItemMacronutrientDao
 import ca.etsmtl.log.fitnesshabits.data.database.daos.nutrition.ItemWithMacronutrientsDao
-import ca.etsmtl.log.fitnesshabits.data.database.repositories.nutrition.MacronutrientRepository
-import ca.etsmtl.log.fitnesshabits.data.database.repositories.nutrition.ItemMacronutrientRepository
-import ca.etsmtl.log.fitnesshabits.data.database.repositories.nutrition.ItemWithMacronutrientsRepository
+import ca.etsmtl.log.fitnesshabits.data.repositories.nutrition.MacronutrientRepository
+import ca.etsmtl.log.fitnesshabits.data.repositories.nutrition.ItemMacronutrientRepository
+import ca.etsmtl.log.fitnesshabits.data.repositories.nutrition.ItemWithMacronutrientsRepository
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn

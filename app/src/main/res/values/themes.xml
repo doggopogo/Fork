@@ -1,46 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources xmlns:tools="http://schemas.android.com/tools">
-
-    <style name="Theme.FitnessHabits" parent="Theme.MaterialComponents.DayNight.NoActionBar">
-        <!-- Primary brand color. -->
-        <item name="colorPrimary">@color/appGreen</item>
-        <item name="colorPrimaryVariant">@color/appGreenVariant</item>
-
-        <!-- Secondary brand color. -->
-        <item name="colorSecondary">@color/appGreen</item>
-        <item name="colorSecondaryVariant">@color/appGreenVariant</item>
-        <item name="colorOnSecondary">@color/white</item>
-
+<resources>
+    <style name="FitnessHabitsTheme" parent="Theme.AppCompat.Light.NoActionBar">
         <!-- Status bar color. -->
         <item name="android:statusBarColor">@android:color/transparent</item>
         <item name="android:windowTranslucentStatus">true</item>
-
-        <!-- Font -->
-        <item name='android:fontFamily'>@font/roboto_regular</item>
-        <item name="android:textSize">20sp</item>
-        <item name="android:textColor">@color/text</item>
-
-        <!-- App Button Style -->
-        <item name="materialButtonStyle">@style/FitHabButton</item>
-
-        <!-- App Button Style
-        <item name="android:editTextStyle">@style/FitHabInputText</item> -->
-
-        <!-- Customize your theme here. -->
     </style>
-
-    <style name="FitHabButton" parent="Widget.MaterialComponents.Button">
-        <item name="cornerRadius">25dp</item>
-        <item name="android:textSize">@dimen/TextParagraphe</item>
-        <!-- <item name="android:height">30dp</item>
-        <item name="android:paddingStart">5dp</item>
-        <item name="android:paddingEnd">5dp</item> -->
-        <item name="textAllCaps">false</item>
-    </style>
-
-    <!--
-    <style name="FitHabInputText" parent="Widget.AppCompat.EditText">
-        <item name="android:paddingLeft">50px</item>
-    </style> -->
-
 </resources>

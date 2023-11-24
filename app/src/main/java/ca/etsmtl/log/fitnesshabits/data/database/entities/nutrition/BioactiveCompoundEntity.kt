@@ -9,12 +9,14 @@ import androidx.room.Junction
 import androidx.room.PrimaryKey
 import androidx.room.Relation
 
-@Entity
-data class BioactiveCompound(
-    @PrimaryKey(autoGenerate = true) val id: Int,
-    @ColumnInfo val name: String,
-    @ColumnInfo val unitID: Int
+@Entity(
+    indices = [Index(value = ["name"], unique = true)]
 )
+data class BioactiveCompound(
+    @PrimaryKey(autoGenerate = true) override val id: Int = 0,
+    @ColumnInfo override val name: String,
+    @ColumnInfo override val unitId: Int
+) : Nutrient
 
 @Entity(
     foreignKeys = [
@@ -38,10 +40,10 @@ data class BioactiveCompound(
     ]
 )
 data class ItemBioactiveCompound(
-    @PrimaryKey(autoGenerate = true) val id: Int,
+    @PrimaryKey(autoGenerate = true) val id: Int = 0,
     @ColumnInfo val itemId: Int,
     @ColumnInfo val bioactiveCompoundId: Int,
-    @ColumnInfo val amount: Float
+    @ColumnInfo val amount: Int
 )
 
 data class ItemWithBioactiveCompounds(  // Makes it easier to fetch all bioactive compounds for a specific item

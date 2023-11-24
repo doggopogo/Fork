@@ -4,7 +4,14 @@ package ca.etsmtl.log.fitnesshabits.ui.components.drawer
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
-import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.CircleShape
@@ -16,6 +23,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
@@ -34,7 +42,7 @@ fun NavigationDrawer(
         .padding(top = 24.dp)) {
         Column {
             DrawerHeader(
-                userName = "John Doe",
+                userName = stringResource(id = R.string.profile_title),
                 navController = navController,
                 scaffoldState = scaffoldState
             )
@@ -64,7 +72,7 @@ fun DrawerHeader(
     ) {
         Image(
             painter = painterResource(id = R.drawable.icon_picture),
-            contentDescription = "User Profile",
+            contentDescription = stringResource(id = R.string.profile_contentdescription),
             modifier = Modifier
                 .size(80.dp)
                 .clip(CircleShape) // makes the image circular
@@ -88,20 +96,20 @@ fun DrawerBody(
     val drawerItems = listOf(
         DrawerItem(
             id = "targets",
-            title = "Targets",
-            contentDescription = "Go to targets screen",
+            title = stringResource(id = R.string.targets_title),
+            contentDescription = stringResource(id = R.string.targets_contentdescription),
             icon = R.drawable.icon_target
         ),
         DrawerItem(
             id = "settings",
-            title = "Settings",
-            contentDescription = "Go to settings screen",
+            title = stringResource(id = R.string.settings_title),
+            contentDescription = stringResource(id = R.string.settings_contentdescription),
             icon = R.drawable.icon_preference
         ),
         DrawerItem(
             id = "export",
-            title = "Export",
-            contentDescription = "Export data",
+            title = stringResource(id = R.string.export_title),
+            contentDescription = stringResource(id = R.string.export_contentdescription),
             icon = R.drawable.icon_export
         )
     )

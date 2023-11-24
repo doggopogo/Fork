@@ -11,10 +11,10 @@ import androidx.room.Relation
 
 @Entity
 data class Macronutrient(
-    @PrimaryKey(autoGenerate = true) val id: Int,
-    @ColumnInfo val name: String,
-    @ColumnInfo val unitID: Int
-)
+    @PrimaryKey(autoGenerate = true) override val id: Int = 0,
+    @ColumnInfo override val name: String,
+    @ColumnInfo override val unitId: Int
+) : Nutrient
 
 @Entity(
     foreignKeys = [
@@ -22,12 +22,6 @@ data class Macronutrient(
             entity = Item::class,
             parentColumns = ["id"],
             childColumns = ["itemId"],
-            onDelete = ForeignKey.CASCADE
-        ),
-        ForeignKey(
-            entity = Macronutrient::class,
-            parentColumns = ["id"],
-            childColumns = ["macronutrientId"],
             onDelete = ForeignKey.CASCADE
         )
     ],
@@ -38,10 +32,10 @@ data class Macronutrient(
     ]
 )
 data class ItemMacronutrient(
-    @PrimaryKey(autoGenerate = true) val id: Int,
+    @PrimaryKey(autoGenerate = true) val id: Int = 0,
     @ColumnInfo val itemId: Int,
     @ColumnInfo val macronutrientId: Int,
-    @ColumnInfo val amount: Float
+    @ColumnInfo val amount: Int
 )
 
 data class ItemWithMacronutrients(  // Makes it easier to fetch all macronutrients for a specific item

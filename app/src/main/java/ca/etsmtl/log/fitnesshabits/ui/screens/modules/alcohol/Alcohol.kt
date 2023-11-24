@@ -1,5 +1,6 @@
 package ca.etsmtl.log.fitnesshabits.ui.screens.modules.alcohol
 
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import ca.etsmtl.log.fitnesshabits.ui.components.Header
 import androidx.compose.foundation.layout.Column
@@ -13,25 +14,22 @@ import androidx.compose.foundation.layout.width
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import ca.etsmtl.log.fitnesshabits.R
-import ca.etsmtl.log.fitnesshabits.ui.SampleData.drinks
 import ca.etsmtl.log.fitnesshabits.ui.components.modules.BottomButtons
-import ca.etsmtl.log.fitnesshabits.ui.components.modules.ColoredDivider
-import ca.etsmtl.log.fitnesshabits.ui.components.modules.DataListDisplay
-import ca.etsmtl.log.fitnesshabits.ui.components.modules.DateFilterButtons
 import ca.etsmtl.log.fitnesshabits.ui.components.modules.EditNotificationButton
 import ca.etsmtl.log.fitnesshabits.ui.components.modules.EditTargetButton
-import ca.etsmtl.log.fitnesshabits.ui.components.modules.Graph
-import ca.etsmtl.log.fitnesshabits.ui.components.modules.ListItem
+import ca.etsmtl.log.fitnesshabits.ui.theme.alcohol
 
 @Composable
 fun Alcohol(navController: NavController) {
-    Column {
+    Column (modifier = Modifier.background(Color.White)){
         Header(
-            title = "Alcohol",
-            R.color.alcohol,
+            title = stringResource(id = R.string.alcohol),
+            alcohol,
             navigateBack = { navController.navigateUp() }
         )
         Column(
@@ -47,13 +45,13 @@ fun Alcohol(navController: NavController) {
             ) {
                 EditNotificationButton {}
                 Spacer(modifier = Modifier.width(8.dp))
-                EditTargetButton("10L", R.color.alcohol) {}
+                EditTargetButton("10L", alcohol) {}
             }
-            DataListDisplay(
-                title = "Quantité totale bues : 600 mL",
-                dataList = drinks.map { ListItem.DrinkItem(it) }, // to change with actual dataList and item type
-                color = R.color.alcohol
-            )
+//            DataListDisplay(
+//                title = "Quantité totale bues : 600 mL",
+//                data = drinks.map { ListItem.DrinkItem(it) }, // to change with actual dataList and item type
+//                color = R.color.alcohol
+//            )
             BottomButtons(
                 onAddClick = { },
                 onShowAllClick = {}

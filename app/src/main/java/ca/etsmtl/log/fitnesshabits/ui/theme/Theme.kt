@@ -6,15 +6,16 @@ import androidx.compose.material.MaterialTheme
 import androidx.compose.material.darkColors
 import androidx.compose.material.lightColors
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.graphics.Color
 
 @SuppressLint("ConflictingOnColor")
 private val DarkColorPalette = darkColors(
     primary = appGreen,
     primaryVariant = appGreenVariant,
-    onPrimary = white,
+    onPrimary = Color.White,
     secondary = appGreen,
     secondaryVariant = appGreenVariant,
-    onSecondary = white,
+    onSecondary = Color.White,
     background = appDarkBackground,
     onBackground = appDarkText
 )
@@ -22,11 +23,11 @@ private val DarkColorPalette = darkColors(
 private val LightColorPalette = lightColors(
     primary = appGreen,
     primaryVariant = appGreenVariant,
-    onPrimary = white,
+    onPrimary = Color.White,
     secondary = appGreen,
     secondaryVariant = appGreenVariant,
-    onSecondary = white,
-    background = white,
+    onSecondary = Color.White,
+    background = Color.White,
     onBackground = appText
 )
 
@@ -44,16 +45,15 @@ fun FitnessHabitsTheme(
     darkTheme: Boolean = isSystemInDarkTheme(),
     content: @Composable () -> Unit
 ) {
-    val colors = if (darkTheme) {
-        DarkColorPalette
-    } else {
-        LightColorPalette
-    }
-
+//    val colors = if (darkTheme) {
+//        DarkColorPalette
+//    } else {
+//        LightColorPalette
+//    }
     MaterialTheme(
-        colors = colors,
+        colors = LightColorPalette,
         typography = Typography,
         shapes = Shapes,
-        content = content
+        content = content,
     )
 }

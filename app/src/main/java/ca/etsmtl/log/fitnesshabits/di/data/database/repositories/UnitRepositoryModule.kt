@@ -1,7 +1,7 @@
 package ca.etsmtl.log.fitnesshabits.di.data.database.repositories
 
 import ca.etsmtl.log.fitnesshabits.data.database.daos.UnitDao
-import ca.etsmtl.log.fitnesshabits.data.database.repositories.UnitRepository
+import ca.etsmtl.log.fitnesshabits.data.repositories.UnitRepository
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn

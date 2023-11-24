@@ -13,7 +13,7 @@ import ca.etsmtl.log.fitnesshabits.R
 
 class NotificationHelper(
     private val context: Context,
-    private val notificationManager: NotificationManagerCompat,
+    private val notificationManager: NotificationManagerCompat
 ) {
     companion object {
         private const val CHANNEL_ID = "general_notification"

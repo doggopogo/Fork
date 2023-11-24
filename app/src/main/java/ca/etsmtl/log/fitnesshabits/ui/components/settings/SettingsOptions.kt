@@ -21,6 +21,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import ca.etsmtl.log.fitnesshabits.R
@@ -31,7 +32,7 @@ import ca.etsmtl.log.fitnesshabits.viewmodels.SettingsViewModel
 fun DataFormatOption(settingsViewModel: SettingsViewModel) {
     var isExpanded = remember { mutableStateOf(false) }
     SettingsOptionExpandable(
-        title = "Data Format",
+        title = stringResource(id = R.string.data_format_title),
         icon = R.drawable.icon_hashtag,
         isExpanded = isExpanded.value,
         onClick = { isExpanded.value = !isExpanded.value }
@@ -46,13 +47,13 @@ fun DataFormatOption(settingsViewModel: SettingsViewModel) {
 
 @Composable
 fun TimeFormatOption(settingsViewModel: SettingsViewModel) {
-    SettingsOption(title = "Time Format") {
+    SettingsOption(title = stringResource(id = R.string.time_format_title)) {
         settingsViewModel.showTimeFormatDialog.value = true
     }
 
     RadioButtonDialog(
         showDialog = settingsViewModel.showTimeFormatDialog,
-        title = "Choose Time Format",
+        title = stringResource(id = R.string.time_format_description),
         options = SettingsEnums.TimeFormat.values().map { it.toString() },
         selectedOption = settingsViewModel.selectedTimeFormat,
         stringToEnum = { SettingsEnums.TimeFormat.valueOf(it) }
@@ -61,13 +62,13 @@ fun TimeFormatOption(settingsViewModel: SettingsViewModel) {
 
 @Composable
 fun DateFormatOption(settingsViewModel: SettingsViewModel) {
-    SettingsOption(title = "Date Format") {
+    SettingsOption(title = stringResource(id = R.string.date_format_title)) {
         settingsViewModel.showDateFormatDialog.value = true
     }
 
     RadioButtonDialog(
         showDialog = settingsViewModel.showDateFormatDialog,
-        title = "Choose Date Format",
+        title = stringResource(id = R.string.date_format_description),
         options = SettingsEnums.DateFormat.values().map { it.toString() },
         selectedOption = settingsViewModel.selectedDateFormat,
         stringToEnum = { SettingsEnums.DateFormat.valueOf(it) }
@@ -78,7 +79,7 @@ fun DateFormatOption(settingsViewModel: SettingsViewModel) {
 fun UnitFormatOption(settingsViewModel: SettingsViewModel) {
     var isExpanded = remember { mutableStateOf(false) }
     SettingsOptionExpandable(
-        title = "Unit Format",
+        title = stringResource(id = R.string.unit_format_title),
         isExpanded = isExpanded.value,
         onClick = { isExpanded.value = !isExpanded.value }
     ) {
@@ -92,13 +93,13 @@ fun UnitFormatOption(settingsViewModel: SettingsViewModel) {
 
 @Composable
 fun VolumeFormatOption(settingsViewModel: SettingsViewModel) {
-    SettingsOption(title = "Volume Format") {
+    SettingsOption(title = stringResource(id = R.string.volume_format_title)) {
         settingsViewModel.showVolumeFormatDialog.value = true
     }
 
     RadioButtonDialog(
         showDialog = settingsViewModel.showVolumeFormatDialog,
-        title = "Choose Volume Format",
+        title = stringResource(id = R.string.volume_format_description),
         options = SettingsEnums.VolumeFormat.values().map { it.toString() },
         selectedOption = settingsViewModel.selectedVolumeFormat,
         stringToEnum = { SettingsEnums.VolumeFormat.valueOf(it) }
@@ -107,13 +108,13 @@ fun VolumeFormatOption(settingsViewModel: SettingsViewModel) {
 
 @Composable
 fun WeightFormatOption(settingsViewModel: SettingsViewModel) {
-    SettingsOption(title = "Weight Format") {
+    SettingsOption(title = stringResource(id = R.string.weight_format_title)) {
         settingsViewModel.showWeightFormatDialog.value = true
     }
 
     RadioButtonDialog(
         showDialog = settingsViewModel.showWeightFormatDialog,
-        title = "Choose Weight Format",
+        title = stringResource(id = R.string.weight_format_description),
         options = SettingsEnums.WeightFormat.values().map { it.toString() },
         selectedOption = settingsViewModel.selectedWeightFormat,
         stringToEnum = { SettingsEnums.WeightFormat.valueOf(it) }
@@ -122,13 +123,13 @@ fun WeightFormatOption(settingsViewModel: SettingsViewModel) {
 
 @Composable
 fun HeightFormatOption(settingsViewModel: SettingsViewModel) {
-    SettingsOption(title = "Height Format") {
+    SettingsOption(title = stringResource(id = R.string.height_format_title)) {
         settingsViewModel.showHeightFormatDialog.value = true
     }
 
     RadioButtonDialog(
         showDialog = settingsViewModel.showHeightFormatDialog,
-        title = "Choose Height Format",
+        title = stringResource(id = R.string.height_format_description),
         options = SettingsEnums.HeightFormat.values().map { it.toString() },
         selectedOption = settingsViewModel.selectedHeightFormat,
         stringToEnum = { SettingsEnums.HeightFormat.valueOf(it) }
@@ -139,7 +140,7 @@ fun HeightFormatOption(settingsViewModel: SettingsViewModel) {
 fun ModulesOption() {
     var isExpanded = remember { mutableStateOf(false) }
     SettingsOptionExpandable(
-        title = "Enabled Modules",
+        title = stringResource(id = R.string.enabled_module_title),
         icon = R.drawable.icon_menu,
         isExpanded = isExpanded.value,
         onClick = { isExpanded.value = !isExpanded.value }
@@ -159,13 +160,16 @@ fun ModulesOption() {
 
 @Composable
 fun LanguageOption(settingsViewModel: SettingsViewModel) {
-    SettingsOption(title = "Language", icon = R.drawable.icon_language) {
+    SettingsOption(
+        title = stringResource(id = R.string.language_title),
+        icon = R.drawable.icon_language
+    ) {
         settingsViewModel.showLanguageDialog.value = true
     }
 
     RadioButtonDialog(
         showDialog = settingsViewModel.showLanguageDialog,
-        title = "Choose Language",
+        title = stringResource(id = R.string.language_description),
         options = SettingsEnums.Language.values().map { it.toString() },
         selectedOption = settingsViewModel.selectedLanguage,
         stringToEnum = { SettingsEnums.Language.valueOf(it) }
@@ -174,12 +178,15 @@ fun LanguageOption(settingsViewModel: SettingsViewModel) {
 
 @Composable
 fun ThemeOption(settingsViewModel: SettingsViewModel) {
-    SettingsOption(title = "Theme", icon = R.drawable.icon_theme) {
+    SettingsOption(
+        title = stringResource(id = R.string.theme_title),
+        icon = R.drawable.icon_theme
+    ) {
         settingsViewModel.showThemeDialog.value = true
     }
     RadioButtonDialog(
         showDialog = settingsViewModel.showThemeDialog,
-        title = "Choose Theme",
+        title = stringResource(id = R.string.theme_description),
         options = SettingsEnums.Theme.values().map { it.toString() },
         selectedOption = settingsViewModel.selectedTheme,
         stringToEnum = { SettingsEnums.Theme.valueOf(it) }
@@ -190,25 +197,28 @@ fun ThemeOption(settingsViewModel: SettingsViewModel) {
 fun ResetOption(settingsViewModel: SettingsViewModel) {
     val showResetDialog = settingsViewModel.showResetDialog.observeAsState(false)
 
-    SettingsOption(title = "Reset", icon = R.drawable.icon_delete_trashbin) {
+    SettingsOption(
+        title = stringResource(id = R.string.reset_title),
+        icon = R.drawable.icon_delete_trashbin
+    ) {
         settingsViewModel.showResetDialog.value = true
     }
 
     if (showResetDialog.value) {
         AlertDialog(
             onDismissRequest = { settingsViewModel.showResetDialog.value = false },
-            title = { Text("Reset") },
-            text = { Text("Are you sure you want to proceed with the reset?") },
+            title = { Text(stringResource(id = R.string.reset_title)) },
+            text = { Text(stringResource(id = R.string.reset_description)) },
             dismissButton = {
                 TextButton(onClick = { settingsViewModel.showResetDialog.value = false }) {
-                    Text("Cancel")
+                    Text(stringResource(id = R.string.cancel))
                 }
             },
             confirmButton = {
                 TextButton(onClick = {
                     settingsViewModel.showResetDialog.value = false
                 }) {
-                    Text("OK")
+                    Text(stringResource(id = R.string.ok))
                 }
             }
         )

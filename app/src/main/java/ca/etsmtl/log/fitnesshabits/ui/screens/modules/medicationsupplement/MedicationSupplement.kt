@@ -1,7 +1,7 @@
 package ca.etsmtl.log.fitnesshabits.ui.screens.modules.medicationsupplement
 
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
-import ca.etsmtl.log.fitnesshabits.ui.components.Header
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
@@ -13,43 +13,44 @@ import androidx.compose.foundation.layout.width
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import ca.etsmtl.log.fitnesshabits.R
-import ca.etsmtl.log.fitnesshabits.ui.SampleData
+import ca.etsmtl.log.fitnesshabits.ui.components.Header
 import ca.etsmtl.log.fitnesshabits.ui.components.modules.BottomButtons
-import ca.etsmtl.log.fitnesshabits.ui.components.modules.ColoredDivider
-import ca.etsmtl.log.fitnesshabits.ui.components.modules.DataListDisplay
-import ca.etsmtl.log.fitnesshabits.ui.components.modules.DateFilterButtons
 import ca.etsmtl.log.fitnesshabits.ui.components.modules.EditNotificationButton
 import ca.etsmtl.log.fitnesshabits.ui.components.modules.EditTargetButton
-import ca.etsmtl.log.fitnesshabits.ui.components.modules.Graph
-import ca.etsmtl.log.fitnesshabits.ui.components.modules.ListItem
+import ca.etsmtl.log.fitnesshabits.ui.theme.supplements
 
 @Composable
 fun MedicationSupplement(navController: NavController) {
-    Column {
-        Header(title = "Medication & Supplement", R.color.supplements, navigateBack = { navController.navigateUp() })
+    Column (modifier = Modifier.background(Color.White)){
+        Header(
+            title = stringResource(id = R.string.medication_supplement),
+            supplements,
+            navigateBack = { navController.navigateUp() })
         Column(
             modifier = Modifier
                 .fillMaxSize()
                 .padding(horizontal = 32.dp)
         ) {
             Spacer(modifier = Modifier.height(16.dp))
-            Row (
+            Row(
                 modifier = Modifier.fillMaxWidth(),
                 verticalAlignment = Alignment.CenterVertically,
                 horizontalArrangement = Arrangement.End
             ) {
                 EditNotificationButton {}
                 Spacer(modifier = Modifier.width(8.dp))
-                EditTargetButton("10L", R.color.supplements) {}
+                EditTargetButton("10L", supplements) {}
             }
-            DataListDisplay(
-                title = "Quantité totale bues : 600 mL",
-                dataList = SampleData.drinks.map { ListItem.DrinkItem(it) }, // to change with actual dataList and item type
-                color = R.color.supplements
-            )
+//            DataListDisplay(
+//                title = "Quantité totale bues : 600 mL",
+//                data = SampleData.drinks.map { ListItem.DrinkItem(it) }, // to change with actual dataList and item type
+//                color = R.color.supplements
+//            )
             BottomButtons(
                 onAddClick = { },
                 onShowAllClick = {}

@@ -62,4 +62,24 @@ interface ItemDao {
         hydrationIndexId: Int?,
         alcoholContentId: Int?
     ): Int  // by convention, updating a row returns the number of affected rows as an Int
+
+    // Gets most commonly used items by type id
+    @Query(
+        """SELECT Item.* FROM Item
+            LEFT JOIN (
+            SELECT itemId, COUNT(itemId) as usageCount
+            FROM Log
+            GROUP BY itemId
+            ) AS LogSummary ON Item.id = LogSummary.itemId
+                WHERE Item.typeId = :typeId
+                ORDER BY 
+                CASE 
+                WHEN LogSummary.usageCount IS NULL THEN 1
+                ELSE 0 
+                END,
+            COALESCE(LogSummary.usageCount, 0) DESC, 
+            Item.name ASC
+"""
+    )
+    suspend fun getItemsOrderedByUsage(typeId: Int): List<Item>
 }

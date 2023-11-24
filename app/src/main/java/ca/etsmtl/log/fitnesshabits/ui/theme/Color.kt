@@ -7,15 +7,12 @@ val Purple500 = Color(0xFF6200EE)
 val Purple700 = Color(0xFF3700B3)
 val Teal200 = Color(0xFF03DAC5)
 
-// --------- General Colo ---------
-
-val black = Color(0xFF000000)
-val white = Color(0xFFFFFFFF)
+// --------- General Color ---------
 
 val appText = Color(0xFF707070)
 val appDefaultGray = Color(0xFF707070)
 val appDarkText = Color(0xFFCECECE)
-val backgroundgray = Color(0xFFF1F1F1)
+val backgroundGray = Color(0xFFF1F1F1)
 
 // --------- Module color ---------
 
@@ -33,7 +30,7 @@ val bloodSugar = Color(0xFFD14F4F)
 
 val appGreen = Color(0xFF24A788)
 val appGreenVariant = Color(0xFF009776)
-val appIconProfilBackground = Color(0xFFF1F1F1)
+val appIconProfileBackground = Color(0xFFF1F1F1)
 val appDarkBackground = Color(0xFF191717)
 val appDarkDateBackground = Color(0xFF2A2A2A)
 val appDarkModuleInfoBackground = Color(0xFFDFDFDF)

@@ -45,9 +45,14 @@ interface ServingDao {
         id: Int,
         size: Int,
         name: String,
-        amount: Float,
+        amount: Int,
         unitId: Int
     ): Int
+
+    // Checks if an entry already exists based on the size and name.
+    // Returns id if it exists, null if it doesn't
+    @Query("SELECT id FROM Serving WHERE size = :size AND name = :name LIMIT 1")
+    suspend fun findServingIdByNameAndSize(name: String, size: Int): Int?
 }
 
 @Dao
